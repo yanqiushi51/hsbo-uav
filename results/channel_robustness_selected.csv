@@ -1,0 +1,4 @@
+method_display,method,scale,channel_model,num_seeds,utility_mean,utility_std,success_rate,conditional_median_first_feasible_index,positive_eval_rate,served_priority_mean,served_priority_std,served_ratio_mean,served_ratio_std
+FT-HSBO,ft_hsbo,medium,los_nlos_expected,10,37.7309,12.7479,1.0,1.0,0.034,40.2362,12.6985,0.155,0.0438
+Full BO,full_space_bo,medium,los_nlos_expected,10,1.7559,3.76,0.2,85.0,0.0007,2.3614,4.9798,0.01,0.0211
+Max-Rate,max_rate_greedy,medium,los_nlos_expected,10,28.6888,6.9826,1.0,1.0,0.0193,30.77,7.362,0.125,0.0264

@@ -1,0 +1,297 @@
+\documentclass[twocolumn]{article}
+
+% -----------------------------------------------------------------------------
+% JSEE-style LaTeX draft. Replace author information, affiliations, funding,
+% figures, and biography placeholders before submission.
+% -----------------------------------------------------------------------------
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{mathptmx}
+\usepackage{caption}
+\renewcommand{\figurename}{Fig.}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{balance}
+\setlength{\columnsep}{0.22in}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0pt}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\vect}[1]{\bm{#1}}
+
+\title{Hierarchical surrogate Bayesian optimization for sparse-reward multi-UAV mission scheduling}
+\author{Author Name 1, Author Name 2, and Author Name 3$^{*}$\\
+\small School or Department, University or Institute, City Postal Code, Country\\
+\small $^{*}$Corresponding author: email@example.com}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Cooperative unmanned aerial vehicle (UAV) mission scheduling with continuous timing variables and narrow service windows forms a high-dimensional black-box optimization problem with extremely sparse valid rewards. Standard Bayesian optimization and population-based algorithms often fail to discover feasible schedules within limited simulation budgets. This paper proposes a hierarchical surrogate Bayesian optimization (HSBO) framework that decomposes the decision vector into an upper flight-strategy layer and a lower timing-refinement layer. The upper layer screens macroscopic flight policies with a Gaussian-process surrogate, while the lower layer uses window-aware heuristic pre-search to shrink the effective timing domain before surrogate-assisted refinement. Experiments on simulation-generated sparse-reward instances with 18, 40, and 80 decision dimensions show that HSBO consistently outperforms random search, greedy heuristics, genetic algorithm, particle swarm optimization, and full-space Bayesian optimization under identical evaluation budgets. On the 40-dimensional instance, HSBO achieves a mean best reward of 99.6, whereas all six baselines return zero. Ablation studies confirm that hierarchical decomposition and heuristic pre-search are the dominant performance drivers.
+\end{abstract}
+
+\noindent\textbf{Keywords:} unmanned aerial vehicle scheduling; Bayesian optimization; sparse reward; black-box optimization; mission planning; surrogate model
+
+\section{Introduction}
+Cooperative unmanned aerial vehicle (UAV) mission scheduling is a representative systems engineering problem in which multiple vehicles must allocate tasks, coordinate motion, and satisfy timing constraints under limited planning budgets. In many practical scenarios, each task is associated with a narrow service window. A task produces useful reward only when a UAV arrives and begins service within the specified interval; otherwise, the attempted assignment contributes no positive reward. When such time-window constraints are combined with continuous flight and timing variables, the feasible region can occupy only a tiny fraction of the search space.
+
+This paper focuses on a sparse-reward multi-UAV scheduling problem in which the decision vector contains both flight-strategy variables and timing variables. For each UAV, the flight-strategy variables describe macroscopic motion preference, including speed and heading. For each action slot, the timing variables describe task-selection keys and scheduled service times. Even a moderate instance with five UAVs and three action slots per UAV results in a 40-dimensional continuous decision vector. The objective value is available only through simulation-based evaluation, which makes the problem a high-dimensional expensive black-box optimization problem.
+
+Bayesian optimization (BO) is widely used for sample-efficient black-box optimization, but standard BO is difficult to apply directly in this setting. Without positive initial observations, a global Gaussian-process surrogate has little information about where feasible schedules may lie. Evolutionary and swarm-intelligence algorithms such as genetic algorithm (GA) and particle swarm optimization (PSO) can explore large spaces, but they typically require far more objective evaluations than are available in expensive simulation loops. Greedy heuristics can exploit task-level information, yet they often lack global refinement capability in coupled multi-UAV timing spaces.
+
+To address these challenges, this paper proposes hierarchical surrogate Bayesian optimization (HSBO). The key idea is to exploit the natural asymmetric structure of the problem. Flight variables determine the coarse geometric feasibility of task service, whereas timing variables determine whether narrow service windows can actually be satisfied. HSBO therefore separates the search process into an upper flight-strategy layer and a lower timing-refinement layer. The lower layer further applies heuristic window-aware pre-search to bias candidate schedules toward regions where positive rewards are more likely.
+
+The main contributions are summarized as follows.
+\begin{enumerate}[leftmargin=1.2em]
+    \item A sparse-reward multi-UAV scheduling formulation with continuous timing variables, narrow service windows, and cooperative task constraints is developed. Monte Carlo audits verify that the feasible regions in the 40-dimensional and 80-dimensional instances are extremely sparse.
+    \item A hierarchical surrogate Bayesian optimization framework is proposed by decomposing the decision space into flight-strategy variables and timing variables. A window-aware heuristic pre-search mechanism is introduced to mitigate the cold-start difficulty caused by zero-reward observations.
+    \item Experiments on 18-dimensional, 40-dimensional, and 80-dimensional scheduling instances show that HSBO outperforms random, greedy, evolutionary, swarm-intelligence, and full-space BO baselines under the same objective-evaluation budgets. Ablation results further show that hierarchical decomposition and heuristic pre-search are the two dominant contributors.
+\end{enumerate}
+
+\section{Related work}
+\subsection{Multi-UAV task assignment and mission planning}
+Multi-UAV task assignment is closely related to vehicle routing, team orienteering, and mission planning with resource and timing constraints. Classical vehicle routing with time windows provides a foundation for modeling service windows and route feasibility~\cite{vrptw}. In multi-UAV settings, extended team-orienteering benchmarks have been proposed to evaluate heuristic and population-based methods, including GA, ant colony optimization, and PSO~\cite{multi_uav_benchmark}. Hierarchical mission planning has also been investigated to decouple coupled task allocation and path planning problems for multi-UAV coalitions~\cite{hier_mission}. These studies demonstrate the importance of exploiting problem structure, but many formulations rely on discrete task sequences or manually designed heuristics and do not directly address high-dimensional continuous timing variables under sparse rewards.
+
+\subsection{High-dimensional Bayesian optimization}
+BO constructs a probabilistic surrogate model and uses an acquisition function to select informative evaluations. It is effective when objective evaluations are expensive, but high-dimensional search remains difficult. Efficient global optimization introduced the use of Gaussian-process surrogates for expensive black-box functions~\cite{ego,gpml}. Later surveys summarized BO as a general framework for automatic experimental design and parameter optimization~\cite{bo_review}. Recent high-dimensional BO methods, such as trust-region BO and sparse axis-aligned subspace BO, improve scalability by local modeling or sparsity assumptions~\cite{turbo,saasbo}. However, these methods are generic. They do not explicitly use the asymmetric flight-timing structure that appears in sparse-reward multi-UAV scheduling.
+
+\subsection{Position of this paper}
+The proposed HSBO differs from monolithic BO and purely heuristic planning methods. It does not search the entire decision vector as a single block. Instead, it decomposes the variables according to their scheduling roles and uses window-aware pre-search to increase the probability of observing positive rewards. This makes the method particularly suitable for expensive scheduling simulators where random samples and full-space surrogates are dominated by zero-reward observations.
+
+\section{Problem formulation}
+Consider $N$ UAVs operating within a mission horizon $H$. UAV $i$ starts from position $(x_i,y_i)$ and can execute at most $K$ action slots. Its upper-level flight variables are speed $v_i\in[v_{\min},v_{\max}]$ and heading angle $\theta_i\in[0,2\pi)$. The flight-strategy vector is
+\begin{equation}
+    \vect{x}^{u}= (v_1,\theta_1,\ldots,v_N,\theta_N)\in\R^{2N}.
+\end{equation}
+
+For each UAV $i$ and action slot $k$, the lower-level decision variables include a continuous task-selection key $q_{ik}$ and a scheduled start time $s_{ik}$. The timing vector is
+\begin{equation}
+    \vect{x}^{l}= (q_{11},s_{11},\ldots,q_{NK},s_{NK})\in\R^{2NK}.
+\end{equation}
+The complete decision vector is therefore
+\begin{equation}
+    \vect{x}=(\vect{x}^{u},\vect{x}^{l})\in\R^{D}, \quad D=2N+2NK.
+\end{equation}
+In the experiments, the small, medium, and large configurations correspond to $D=18$, $D=40$, and $D=80$, respectively.
+
+Let $\mathcal{T}=\{1,\ldots,M\}$ denote the task set. Task $j$ is specified by location $(x_j,y_j)$, reward $r_j$, service duration $c_j$, and service window $[a_j,b_j]$. A task contributes positive reward only if a UAV arrives and begins service within the window. For a schedule $\vect{x}$, let $\mathcal{S}(\vect{x})$ denote the set of successfully served tasks. The optimization objective is
+\begin{equation}
+    \max_{\vect{x}} R(\vect{x})=\sum_{j\in\mathcal{S}(\vect{x})}r_j-\lambda_eE(\vect{x})-
+    \lambda_dD_l(\vect{x})-\lambda_pP(\vect{x}),
+\end{equation}
+where $E(\vect{x})$ is travel-energy cost, $D_l(\vect{x})$ is delay or overtime penalty, and $P(\vect{x})$ is a duplication or conflict penalty. In the sparse-reward regime, most random vectors violate at least one timing or service constraint and yield $R(\vect{x})=0$ after penalty truncation.
+
+\section{Hierarchical surrogate Bayesian optimization}
+\subsection{Framework}
+HSBO decomposes the original problem into an upper flight-strategy layer and a lower timing-refinement layer. The upper layer maintains a surrogate model for the best timing score that can be achieved under a given flight strategy. The lower layer, conditioned on a selected flight vector, performs window-aware pre-search and local surrogate-assisted timing refinement.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.98\textwidth]{figures/fig1_hsbo_framework.png}
+\caption{Overall framework of HSBO for sparse-reward multi-UAV mission scheduling. The decision vector is decomposed into an upper flight-strategy layer and a lower timing-refinement layer. The best lower-layer reward is fed back to update the upper-level surrogate, and the loop repeats until the objective-evaluation budget is exhausted.}
+\label{fig:framework}
+\end{figure*}
+
+\noindent\textbf{Algorithm 1} summarizes the procedure.
+\begin{center}
+\fbox{\begin{minipage}{0.94\columnwidth}
+\small
+\textbf{Input:} scheduling instance, total budget $B$.\par
+\textbf{Output:} best schedule $\vect{x}^{*}$.\par
+1) Generate initial diverse flight candidates $\vect{x}^{u}$.\par
+2) For each selected $\vect{x}^{u}$, run window-aware pre-search in the timing space.\par
+3) Evaluate candidate schedules and record the best timing score.\par
+4) Fit or update the upper-level Gaussian-process surrogate.\par
+5) Until budget $B$ is exhausted, select new flight candidates using surrogate scoring, refine timing candidates in the lower layer, evaluate them, and update the best-so-far schedule.\par
+6) Return the best observed schedule.
+\end{minipage}}
+\end{center}
+
+\subsection{Upper flight-strategy screening}
+The upper layer approximates
+\begin{equation}
+    S(\vect{x}^{u})\approx \max_{\vect{x}^{l}}R(\vect{x}^{u},\vect{x}^{l})
+\end{equation}
+with a Gaussian-process surrogate. Given observations $\mathcal{D}^{u}=\{(\vect{x}^{u}_n,y_n)\}_{n=1}^{n_o}$, the posterior mean and standard deviation are denoted by $\mu(\vect{x}^{u})$ and $\sigma(\vect{x}^{u})$. Upper-level candidates are ranked by an upper-confidence score
+\begin{equation}
+    A(\vect{x}^{u})=\mu(\vect{x}^{u})+\beta\sigma(\vect{x}^{u}),
+\end{equation}
+where $\beta$ balances exploitation and exploration. Candidate pools combine local perturbations around the incumbent flight strategy with global random samples.
+
+\subsection{Lower timing refinement}
+For a fixed $\vect{x}^{u}$, direct random search over $\vect{x}^{l}\in\R^{2NK}$ is inefficient. HSBO therefore applies window-aware pre-search. For each UAV-task pair, approximate arrival times are estimated from position, speed, and heading. Timing candidates are then generated around task-window centers with controlled perturbation. This does not access hidden optimal assignments; it only uses public task-window information to bias initialization toward physically meaningful schedules.
+
+After pre-search, a local surrogate ranks candidate timing vectors using predicted reward and uncertainty. The implementation can additionally include surrogate-gradient scores, Pareto-front screening, and minimum-distance filtering. The ablation study in Section VI shows that these auxiliary ranking details do not measurably change the final best-so-far reward in the present benchmark. The main performance gains come from the two structural mechanisms: hierarchical decomposition and heuristic pre-search.
+
+\section{Experimental setup}
+\subsection{Benchmark instances}
+Three sparse-reward scheduling scales are generated, as shown in Table~\ref{tab:scales}. The instances are simulation generated with fixed random seeds and are inspired by public multi-UAV task-assignment benchmarks. They extend routing-style task assignment by introducing continuous timing variables, narrow service windows, and cooperative scheduling constraints.
+
+\begin{table}[t]
+\centering
+\caption{Benchmark scale configurations}
+\label{tab:scales}
+\begin{tabular}{lccc}
+\toprule
+Scale & Small & Medium & Large \\
+\midrule
+UAVs $N$ & 3 & 5 & 8 \\
+Tasks $M$ & 10 & 20 & 40 \\
+Actions per UAV $K$ & 2 & 3 & 4 \\
+Decision dimension $D$ & 18 & 40 & 80 \\
+Evaluation budget & 150 & 300 & 300 \\
+Number of seeds & 10 & 10 & 5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Baselines and metrics}
+HSBO is compared with random search, Greedy-Distance, Greedy-Reward-Density, GA, PSO, and Standard BO. All methods use the same objective-evaluation budget. Greedy methods do not use hidden task-key encodings and are restricted to visible task locations, rewards, distances, and time-window information.
+
+The primary metric is the best observed reward over the budget. We also report feasible evaluation rate, which is the fraction of evaluations with positive reward. Convergence is measured by the best-so-far reward as a function of objective evaluations.
+
+\subsection{Sanity checks}
+Because zero-reward baselines may be mistaken for implementation failure, four audits are conducted. First, all baseline logs are verified to contain the full evaluation budget. Second, a Monte Carlo sparsity audit with 2000 random vectors yields 11 positive samples on the 18-D instance but zero positive samples on both the 40-D and 80-D instances. Third, task reachability is confirmed: 10/10, 20/20, and 39/40 tasks are reachable in the small, medium, and large scales, respectively. Fourth, a window-aware heuristic candidate can obtain positive reward on the 40-D instance, confirming that the evaluator is not degenerate.
+
+\section{Results and discussion}
+\subsection{Main comparison}
+Table~\ref{tab:main} reports the main results. On the 18-D instance, HSBO achieves a mean best reward of 121.46, which is about 3.2 times the strongest baseline. On the 40-D instance, all baselines fail to discover positive-reward schedules within the same 300-evaluation budget, while HSBO achieves a mean best reward of 99.58. On the 80-D stress-test instance, HSBO remains the only method that discovers positive-reward schedules.
+
+\begin{table}[t]
+\centering
+\caption{Main comparison results: best mean / feasible rate (\%)}
+\label{tab:main}
+\small
+\begin{tabular}{lccc}
+\toprule
+Method & 18-D & 40-D & 80-D \\
+\midrule
+Random & 25.33 / 2.5 & 0.00 / 0.00 & 0.00 / 0.00 \\
+Greedy-Dist. & 25.31 / 4.1 & 0.00 / 0.00 & 0.00 / 0.00 \\
+Greedy-Dens. & 37.39 / 4.1 & 0.00 / 0.00 & 0.00 / 0.00 \\
+GA & 20.39 / 9.0 & 0.00 / 0.00 & 0.00 / 0.00 \\
+PSO & 33.06 / 4.9 & 0.00 / 0.00 & 0.00 / 0.00 \\
+Standard BO & 11.89 / 7.3 & 0.00 / 0.00 & 0.00 / 0.00 \\
+\textbf{HSBO} & \textbf{121.46 / 10.8} & \textbf{99.58 / 1.67} & \textbf{26.84 / 0.20} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig2_convergence_40d.png}
+\caption{Convergence curves on the 40-D medium-scale instance. The curve shows the mean best-so-far reward over 10 independent seeds, and the shaded region denotes one standard error. All initialization candidates are counted within the same objective-evaluation budget.}
+\label{fig:conv40}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig3_convergence_80d.png}
+\caption{Convergence curves on the 80-D stress-test instance. The curve shows the mean best-so-far reward over five independent seeds, and the shaded region denotes one standard error. All baselines stay at zero under the same 300-evaluation budget.}
+\label{fig:conv80}
+\end{figure}
+
+
+\begin{table}[t]
+\centering
+\caption{Sanity-check results for sparse-reward instances}
+\label{tab:sanity}
+\small
+\begin{tabular}{p{0.34\columnwidth}p{0.55\columnwidth}}
+\toprule
+Audit item & Result \\
+\midrule
+Budget audit & All methods consumed the complete evaluation budget. \\
+Monte Carlo sparsity & Random sampling produced 11/2000 positive samples on 18-D and 0/2000 on both 40-D and 80-D. \\
+Reachability audit & Reachable tasks were 10/10, 20/20, and 39/40 for the 18-D, 40-D, and 80-D instances, respectively. \\
+Heuristic audit & A window-aware structured candidate obtained positive reward on the 40-D instance (59.1), confirming that the evaluator is not degenerate. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The feasible evaluation rates confirm the sparse nature of the problem. Even HSBO obtains only 1.67\% feasible evaluations on the 40-D instance and 0.20\% on the 80-D instance. Nevertheless, these small feasible fractions are sufficient for HSBO to identify useful schedules, whereas monolithic baselines remain trapped in the zero-reward region. Fig.~\ref{fig:conv40} and Fig.~\ref{fig:conv80} further show that non-structured baselines stay at zero in the high-dimensional settings, while HSBO discovers positive-reward schedules within the same evaluation budgets. Table~\ref{tab:sanity} summarizes the audits used to rule out trivial explanations for zero-reward baselines.
+
+\subsection{Ablation study}
+Table~\ref{tab:ablation} shows the ablation results on the 40-D instance. Removing heuristic pre-search causes near-complete failure: the mean best reward drops from 99.58 to 0.22. Removing the hierarchy reduces the mean best reward to 42.71, a 57\% decrease. Standard full-space BO, which uses neither hierarchy nor pre-search, obtains zero reward.
+
+\begin{table}[t]
+\centering
+\caption{Ablation results on the 40-D medium instance}
+\label{tab:ablation}
+\begin{tabular}{lccc}
+\toprule
+Variant & Best mean & Best max & Feasible/\% \\
+\midrule
+HSBO-full & 99.58 & 195.06 & 1.67 \\
+w/o hierarchy & 42.71 & 142.78 & 0.20 \\
+w/o pre-search & 0.22 & 2.20 & 0.03 \\
+Full-space BO & 0.00 & 0.00 & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Additional variants that remove surrogate-gradient guidance, Pareto-front candidate screening, or minimum-distance diversity filtering produce the same final best-so-far rewards as HSBO-full in the current benchmark. This result is reported deliberately. It indicates that these auxiliary ranking terms are not the dominant sources of performance in this setting. The main contributors are hierarchical decomposition and heuristic pre-search.
+
+\subsection{Discussion}
+The results explain why standard full-space optimization fails. In high-dimensional sparse-reward scheduling, most observations are exactly zero. A global surrogate fitted on zero-valued data cannot reliably identify feasible timing regions, and population-based methods require many more evaluations to stumble into narrow service windows. HSBO improves the situation by using the upper layer to screen macroscopic flight strategies and the lower layer to concentrate timing candidates near plausible service windows.
+
+The method still has limitations. The benchmark is simulation generated, and the current dynamics model abstracts away wind, sensing uncertainty, communication delay, and online task arrivals. The auxiliary ranking components also remain weak in the present implementation. Future work should evaluate HSBO in high-fidelity UAV simulators, extend it to online replanning, and strengthen the refinement stage with explicit surrogate mean-ascent and max-min batch selection.
+
+\section{Conclusions}
+This paper proposed HSBO for sparse-reward multi-UAV mission scheduling. The method decomposes the high-dimensional decision vector into an upper flight-strategy layer and a lower timing-refinement layer, and uses window-aware heuristic pre-search to overcome the cold-start difficulty caused by zero-reward observations. Experiments on 18-D, 40-D, and 80-D instances show that HSBO discovers feasible schedules where six baselines fail under the same evaluation budgets. Ablation studies confirm that the two dominant components are hierarchical decomposition and heuristic pre-search. The current study is limited to simulation-generated instances and simplified dynamics. Future work will incorporate higher-fidelity UAV dynamics, communication constraints, uncertain task information, and online replanning.
+
+
+\begin{thebibliography}{99}
+\bibitem{vrptw}
+SOLOMON M M. Algorithms for the vehicle routing and scheduling problems with time window constraints. Operations Research, 1987, 35(2): 254--265.
+
+\bibitem{multi_uav_benchmark}
+XIAO K, LU J Q, NIE Y, MA L, WANG X K, WANG G H. A benchmark for multi-UAV task assignment of an extended team orienteering problem. Proc. of the 2022 China Automation Congress, 2022: 6966--6970.
+
+\bibitem{hier_mission}
+YAN F, ZHU X P, ZHOU Z, CHU J. A hierarchical mission planning method for simultaneous arrival of multi-UAV coalition. Applied Sciences, 2019, 9(10): 1986.
+
+\bibitem{ego}
+JONES D R, SCHONLAU M, WELCH W J. Efficient global optimization of expensive black-box functions. Journal of Global Optimization, 1998, 13(4): 455--492.
+
+\bibitem{bo_review}
+SHAHRIARI B, SWERSKY K, WANG Z, ADAMS R P, DE FREITAS N. Taking the human out of the loop: a review of Bayesian optimization. Proceedings of the IEEE, 2016, 104(1): 148--175.
+
+\bibitem{gpml}
+RASMUSSEN C E, WILLIAMS C K I. Gaussian processes for machine learning. Cambridge, USA: MIT Press, 2006.
+
+\bibitem{turbo}
+ERIKSSON D, PEARCE M, GARDNER J, TURNER R D, POLOCZEK M. Scalable global optimization via local Bayesian optimization. Advances in Neural Information Processing Systems, 2019, 32.
+
+\bibitem{saasbo}
+ERIKSSON D, JANKOWIAK M. High-dimensional Bayesian optimization with sparse axis-aligned subspaces. Proc. of the 37th Conference on Uncertainty in Artificial Intelligence, 2021: 493--503.
+
+\bibitem{pso}
+KENNEDY J, EBERHART R. Particle swarm optimization. Proc. of IEEE International Conference on Neural Networks, 1995: 1942--1948.
+
+\bibitem{nsga2}
+DEB K, PRATAP A, AGARWAL S, MEYARIVAN T. A fast and elitist multiobjective genetic algorithm: NSGA-II. IEEE Transactions on Evolutionary Computation, 2002, 6(2): 182--197.
+
+\bibitem{cmaes}
+HANSEN N, OSTERMEIER A. Completely derandomized self-adaptation in evolution strategies. Evolutionary Computation, 2001, 9(2): 159--195.
+\end{thebibliography}
+
+\section*{Biographies}
+\noindent\textbf{Author Name 1} was born in YEAR. He/She received the DEGREE degree from UNIVERSITY. He/She is currently POSITION. His/Her research interests include unmanned systems, optimization, and machine learning.\\
+E-mail: email@example.com
+
+\vspace{0.1in}
+\noindent\textbf{Author Name 2} was born in YEAR. He/She received the DEGREE degree from UNIVERSITY. He/She is currently POSITION. His/Her research interests include systems engineering and intelligent optimization.\\
+E-mail: email@example.com
+
+\vspace{0.1in}
+\noindent\textbf{Author Name 3} was born in YEAR. He/She received the DEGREE degree from UNIVERSITY. He/She is currently POSITION. His/Her research interests include UAV scheduling and black-box optimization.\\
+E-mail: email@example.com
+
+\balance
+\end{document}

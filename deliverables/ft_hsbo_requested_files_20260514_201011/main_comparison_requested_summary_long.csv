@@ -1,0 +1,17 @@
+method,method_id,scale,dimension,num_seeds,utility_mean,utility_std,success_rate,conditional_median_first_feasible_index,positive_eval_rate,served_ratio_mean,served_ratio_std,served_priority_mean,served_priority_std
+RS,rs,medium,40-D,20,3.5834,4.0453,0.5,108.0,0.002,0.025,0.0256,5.3449,5.7352
+RS,rs,large,80-D,20,2.5985,3.1321,0.55,114.0,0.0037,0.0138,0.0128,5.6428,5.734
+Full BO,full_space_bo,medium,40-D,20,1.9813,3.0588,0.35,151.0,0.0017,0.0175,0.0245,3.3642,4.8886
+Full BO,full_space_bo,large,80-D,20,2.3844,3.5224,0.35,60.0,0.0025,0.0087,0.0122,3.8997,5.5772
+DE-rp,de_rp,medium,40-D,20,10.6243,4.4961,1.0,35.0,0.0293,0.06,0.0205,14.3391,4.7713
+DE-rp,de_rp,large,80-D,20,12.2588,4.1258,1.0,28.5,0.051,0.045,0.0131,19.597,5.211
+Repair BO,repair_bo,medium,40-D,20,14.1881,7.0257,1.0,38.5,0.1113,0.0775,0.0302,17.5653,7.4018
+Repair BO,repair_bo,large,80-D,20,15.0169,6.8382,1.0,23.5,0.1225,0.0475,0.018,22.3676,7.4976
+EDF,edf_rate_greedy,medium,40-D,20,15.6158,8.6071,1.0,1.0,0.0233,0.085,0.0401,17.7929,8.593
+EDF,edf_rate_greedy,large,80-D,20,11.1475,9.5753,0.95,1.0,0.0072,0.0475,0.0242,18.1981,9.943
+Max-Rate,max_rate_greedy,medium,40-D,20,30.1757,13.9002,1.0,1.0,0.029,0.14,0.0641,32.4863,13.859
+Max-Rate,max_rate_greedy,large,80-D,20,31.6644,18.7251,1.0,1.0,0.0142,0.075,0.038,37.9643,18.7981
+Nearest,nearest_feasible_user,medium,40-D,20,20.3769,8.5722,1.0,1.0,0.0433,0.105,0.0456,22.4137,8.2865
+Nearest,nearest_feasible_user,large,80-D,20,28.5342,20.5735,1.0,1.0,0.0305,0.0825,0.0445,34.3819,20.6171
+FT-HSBO,ft_hsbo,medium,40-D,20,38.437,13.4429,1.0,1.0,0.0435,0.17,0.0594,40.3567,13.5143
+FT-HSBO,ft_hsbo,large,80-D,20,51.764,10.7743,1.0,1.0,0.036,0.1162,0.0247,57.0086,11.1094

@@ -1,0 +1,4 @@
+scale,random_samples,window_feasible_pct,rate_feasible_pct,transmission_feasible_pct,positive_utility_pct,target_samples
+small,2000,48.35,0.05,0.05,0.05,2000
+medium,2000,78.10000000000001,0.25,0.25,0.25,2000
+large,2000,96.95,1.15,1.15,1.05,2000

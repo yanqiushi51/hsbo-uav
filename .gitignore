@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment
+.env
+.env.local
+
+# LaTeX build files
+*.aux
+*.log
+*.synctex*
+*.out
+*.toc
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.gz
+main.pdf
+
+# Temp directories
+.tmp_pdf_review/
+.tmp_pdf_review2/
+
+# Logs
+logs/
+
+# Results (large CSV files — enable if you want to exclude)
+# results/

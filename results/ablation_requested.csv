@@ -1,0 +1,6 @@
+variant,utility_mean,utility_std,positive_eval_rate,conditional_median_first_feasible_index,success_rate
+Full BO,1.8695,3.2567,0.0017,82.0,0.3
+Repair BO,14.1118,5.3307,0.139,44.5,1.0
+FT-HSBO w/o presearch,9.2483,3.0525,0.0077,8.0,1.0
+FT-HSBO w/o hierarchy,18.5339,8.7417,0.228,18.0,1.0
+FT-HSBO,39.0654,12.4686,0.0437,1.0,1.0

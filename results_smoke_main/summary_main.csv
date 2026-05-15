@@ -1,0 +1,7 @@
+experiment,scale,channel_model,method,budget,num_seeds,mean_utility,std_utility,median_utility,max_utility,success_rate,mean_first_feasible,median_first_feasible,feasible_eval_rate,mean_served_ratio,mean_outage_ratio,mean_energy,window_width,rate_threshold_mbps
+main,medium,distance,de_rp,40,1,8.365057915641701,0.0,8.365057915641701,8.365057915641701,1.0,10.0,10.0,0.05,0.05,0.08318452380952382,250.59251592451324,30.0,15.0
+main,medium,distance,edf_rate_greedy,40,1,0.0,0.0,0.0,0.0,0.0,,,0.0,0.0,0.1626190476190476,291.0,30.0,15.0
+main,medium,distance,ft_hsbo,40,1,0.4398055918374242,0.0,0.4398055918374242,0.4398055918374242,1.0,33.0,33.0,0.025,0.05,0.19050824175824174,231.6750614188166,30.0,15.0
+main,medium,distance,full_space_bo,40,1,0.0,0.0,0.0,0.0,0.0,,,0.0,0.0,0.059166666666666666,233.6726900255,30.0,15.0
+main,medium,distance,max_rate_greedy,40,1,0.0,0.0,0.0,0.0,0.0,,,0.0,0.0,0.09905629093129094,291.0,30.0,15.0
+main,medium,distance,rs,40,1,0.0,0.0,0.0,0.0,0.0,,,0.0,0.0,0.06749999999999999,233.48797306143143,30.0,15.0

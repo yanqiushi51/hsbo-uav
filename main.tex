@@ -1,0 +1,328 @@
+\documentclass[letterpaper,journal]{IEEEtran}
+\usepackage{amsmath,amsfonts}
+\usepackage{array}
+\usepackage{textcomp}
+\usepackage{stfloats}
+\usepackage{placeins}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage[nocompress]{cite}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{soul}
+
+\hyphenation{op-tical net-works semi-conduc-tor IEEE-Xplore}
+\setlength{\textfloatsep}{5pt plus 1pt minus 1pt}
+\setlength{\floatsep}{5pt plus 1pt minus 1pt}
+\setlength{\intextsep}{5pt plus 1pt minus 1pt}
+\setlength{\abovedisplayskip}{3pt plus 1pt minus 1pt}
+\setlength{\belowdisplayskip}{3pt plus 1pt minus 1pt}
+\setlength{\abovedisplayshortskip}{2pt plus 1pt minus 1pt}
+\setlength{\belowdisplayshortskip}{2pt plus 1pt minus 1pt}
+
+% Compile-safe figure insertion. Replace the filenames in the body with your
+% final figure files. If a file is missing, LaTeX will show a framed placeholder
+% instead of stopping compilation.
+\newcommand{\safeincludegraphics}[2][]{%
+  \IfFileExists{#2}{\includegraphics[#1]{#2}}{%
+    \fbox{\parbox[c][0.22\textheight][c]{0.94\linewidth}{\centering Missing figure: \\[-1pt]
+    \texttt{\detokenize{#2}}}}%
+  }%
+}
+
+\begin{document}
+
+\title{Flight-Timing Hierarchical Surrogate-Assisted Optimization for Sparse-Window UAV-IoT Packet Collection}
+
+\author{Yuhan Jiang and Qiushi Yan%
+\thanks{Y. Jiang is with the School of Computer Science and Technology, Xidian University, Xi'an 710071, China (e-mail: 23009200083@stu.xidian.edu.cn).}
+\thanks{Q. Yan is with the School of Artificial Intelligence, Xidian University, Xi'an 710071, China.}}
+
+\markboth{IEEE Wireless Communications Letters,~Vol.~XX, No.~XX, 2026}%
+{Jiang and Yan: FT-HSBO for Sparse-Window UAV-IoT Packet Collection}
+
+\maketitle
+
+\begin{abstract}
+Hard validity windows make urgent UAV-IoT packet collection a sparse-feedback wireless service scheduling problem: positive utility can appear only when mobility, service start time, link rate, and packet completion jointly pass the service gates. We propose FT-HSBO, a flight-timing hierarchical surrogate-assisted optimizer that combines upper mobility screening with GP-assisted lower assignment/timing refinement. All complete-schedule evaluations from initialization and refinement are counted against the same query budget. Over 20 matched seeds, FT-HSBO improves mean final utility over the best baseline by 27.4\% and 63.5\% in 40-D and 80-D settings, respectively.
+\end{abstract}
+
+\begin{IEEEkeywords}
+UAV-IoT, urgent packet collection, sparse-window utility, surrogate-assisted optimization, wireless service scheduling.
+\end{IEEEkeywords}
+
+\section{Introduction}
+\IEEEPARstart{U}{nmanned} aerial vehicles (UAVs) can provide temporary wireless access in infrastructure-limited scenarios such as emergency monitoring, remote inspection, and event-triggered sensing. UAV-assisted IoT data collection has motivated AoI-aware trajectory design \cite{sun2024}, resilient multi-UAV resource and trajectory optimization \cite{ge2024}, GNN-enhanced downlink planning \cite{zhong2024}, and semantic-AI-based UAV base-station design \cite{yuan2025}. In these settings, ground nodes may generate urgent packets after abnormal events such as fire alarms, water-level surges, equipment faults, or leakage warnings. Unlike periodic status updates, expired urgent packets can lose most operational value even if delivered later.
+
+This letter studies the resulting sparse-window wireless service scheduling problem. Time-window-aware UAV collection and integrated task-assignment/trajectory-planning methods show that temporal constraints and task-motion coupling are central to multi-UAV operations \cite{say2021,wu2025}. Existing time-window-aware UAV studies mainly target planning, allocation, or learning formulations, whereas we consider limited-query complete-schedule optimization of a hard-gated wireless service utility with known pre-evaluation feasibility cues. We do not assume a structure-free black box: packet windows, packet sizes, node locations, and the nominal rate model are available as cheap cues, while complete-schedule utility evaluations remain budgeted. A schedule obtains value only when service start, UAV-node rate, and packet completion are jointly feasible; otherwise, the true utility is often zero, unlike AoI objectives that usually remain informative over most trajectories.
+
+Classical BO and Gaussian-process (GP) surrogates are sample-efficient for expensive objectives \cite{jones1998,rasmussen2006}, but full-space BO becomes unreliable when early observations are mostly zero. Constrained and mixed-variable BO methods address unknown feasibility or discrete-continuous spaces \cite{gelbart2014,hernandez2016,daulton2022}; however, they are not designed to exploit the flight-timing asymmetry of this wireless service problem. Mobility mainly determines which packets can become rate-feasible, whereas service timing determines whether those rate-feasible opportunities fall inside hard validity windows. Evolutionary optimizers may get only weak selection signal before rate-feasible schedules emerge, and sparse-reward deep reinforcement learning usually requires substantially more interaction \cite{ladosz2022} than the limited true-utility budget considered here.
+
+To address this issue, we propose FT-HSBO, a flight-timing hierarchical surrogate-assisted optimizer. FT-HSBO screens UAV mobility in an upper layer and refines assignment/timing schedules with known pre-evaluation window/rate cues in a lower layer, using packet sizes for completion checking under a counted complete-schedule evaluation budget.
+
+The main contributions are summarized as follows.
+\begin{itemize}
+    \item We formulate sparse-window UAV-IoT packet collection as a hard-gated wireless service utility, where value requires joint window, rate, and completion feasibility.
+    \item We propose FT-HSBO, a budgeted hierarchical surrogate-assisted optimizer that decomposes complete schedules into upper mobility screening and lower link-window-aware assignment/timing refinement.
+    \item We evaluate FT-HSBO under matched 40-D and 80-D benchmarks with ablations, discovery diagnostics, sensitivity tests, and channel robustness checks.
+\end{itemize}
+
+\section{System Model and Problem Formulation}
+\subsection{Urgent IoT Packet Collection Scenario}
+Consider $N$ UAVs serving $M$ ground IoT nodes in a square target region. Node $j$ is located at horizontal coordinate $\mathbf{w}_j=(x_j,y_j)$ and generates an event-triggered packet
+\begin{equation}
+P_j = \{L_j,r_j,[a_j,b_j]\},
+\end{equation}
+where $L_j$ is the packet size, $r_j$ is the service priority, and $[a_j,b_j]$ is the hard validity window. Under the service-start validity convention, packet $j$ can contribute utility only if service starts within $[a_j,b_j]$. UAV $i$ flies at fixed altitude $H$, so its three-dimensional position is $(\mathbf{u}_i(t),H)$ with horizontal component $\mathbf{u}_i(t)=(x_i(t),y_i(t))$. Under the constant-heading mobility primitive,
+\begin{equation}
+\mathbf{u}_i(t)=\mathbf{u}_i(0)+v_i t[\cos\theta_i,\sin\theta_i],
+\end{equation}
+where $v_i$ and $\theta_i$ denote its speed and heading.
+
+For a compact high-dimensional scheduling representation, each UAV is assigned $K$ service slots. The upper vector $\mathbf{x}^{u}$ collects normalized speed/heading keys $(\bar v_i,\bar\theta_i)$, while the lower vector $\mathbf{x}^{l}$ collects node-selection and start-time keys $(\rho_{ik},\bar s_{ik})$. The complete normalized decision vector is
+\begin{equation}
+\mathbf{x}=(\mathbf{x}^{u},\mathbf{x}^{l})\in[0,1]^D,\quad D=2N+2NK.
+\end{equation}
+Before evaluation, $\bar v_i$, $\bar\theta_i$, and $\bar s_{ik}$ are decoded to $v_i$, $\theta_i$, and $s_{ik}$ by linear speed scaling, a $2\pi$ heading map, and $s_{ik}=(T-c)\bar s_{ik}$, respectively; the node key is decoded as $\ell_{ik}=\min\{M,1+\lfloor M\rho_{ik}\rfloor\}$. Below, $v_i$, $\theta_i$, $s_{ik}$, and $\ell_{ik}$ denote decoded physical quantities.
+
+\subsection{UAV-Node Rate Model}
+The distance between UAV $i$ and node $j$ at time $t$ is
+\begin{equation}
+d_{ij}(t)=\sqrt{\|\mathbf{u}_i(t)-\mathbf{w}_j\|^2+H^2}.
+\end{equation}
+For the main experiments, we use a distance-dependent ground-to-air link model $h_{ij}(t)=\beta_0 d_{ij}^{-\alpha}(t)$, where $\beta_0$ is the channel gain at the reference distance and $\alpha$ is the path-loss exponent. The received signal-to-noise ratio (SNR) and uplink rate are
+\begin{align}
+\gamma_{ij}(t) &= \frac{P_{\rm tx}h_{ij}(t)}{\sigma^2},\\
+R_{ij}(t) &= B_{\rm link}\log_2(1+\gamma_{ij}(t)),
+\end{align}
+where $P_{\rm tx}$ is the IoT-node uplink transmit power, $B_{\rm link}$ is the per-link service bandwidth assigned to an evaluated UAV-IoT service link, and $\sigma^2$ is the noise power. This controlled model isolates sparse service-schedule discovery from explicit bandwidth allocation; Section~IV also tests a deterministic expected LoS/NLoS path-loss variant without changing FT-HSBO.
+
+\subsection{Hard-Gated Service Utility}
+For UAV-slot pair $(i,k)$ and packet $j$, define the gate event
+\begin{equation}
+\label{eq:gates}
+\begin{aligned}
+\mathcal{G}_{ijk}(\mathbf{x})=\{&
+\ell_{ik}=j,\; s_{ik}\in[a_j,b_j],\\
+&R_{ij}(s_{ik})\ge R_{\min},\;
+cR_{ij}(s_{ik})\ge L_j\}.
+\end{aligned}
+\end{equation}
+Packet-level success $z_j(\mathbf{x})$ equals one if at least one UAV-slot pair satisfies $\mathcal{G}_{ijk}$ for packet $j$, and zero otherwise. Here, $R_{\min}$ is a conservative link-activation threshold and $c$ is the service duration. The completion check uses a quasi-static service-slot approximation; a time-varying expression would replace it with $\int_{s_{ik}}^{s_{ik}+c}R_{ij}(t)\,dt\ge L_j$. These conditions jointly impose service-start validity, rate feasibility, and packet transmission completion.
+
+The true service utility is defined as
+\begin{equation}
+\begin{aligned}
+U(\mathbf{x})=\max\{0,\;&\sum_{j=1}^{M}r_jz_j(\mathbf{x})\\
+&-\lambda_m C_{\rm mob}(\mathbf{x})
+-\lambda_c C_{\rm conf}(\mathbf{x})\}.
+\end{aligned}
+\end{equation}
+where, consistent with the experimental evaluator, $C_{\rm conf}(\mathbf{x})$ consists of successful duplicate packet services and intra-UAV slot overlaps. The duplicate term penalizes only repeated successful services of the same packet. The overlap term sorts each UAV's slots by decoded start time and counts adjacent slot pairs whose start-time gap is smaller than $c$.
+Under the constant-speed trajectory model, we use the normalized mobility-cost proxy
+\begin{equation}
+C_{\rm mob}(\mathbf{x})=\frac{1}{d_0}\sum_{i=1}^{N}v_iT,
+\end{equation}
+where $d_0$ is a normalization constant. Thus, $C_{\rm mob}(\mathbf{x})$ is proportional to the total flight distance and is not a physical propulsion-energy model.
+The objective is $\max_{\mathbf{x}\in[0,1]^D}U(\mathbf{x})$. The optimizer queries the true utility only through complete schedules $\mathbf{x}$ and observes the resulting utility; gradients or closed-form optima of the composite utility are unavailable.
+
+\begin{figure}[t]
+\centering
+\safeincludegraphics[width=\columnwidth]{figures/fig1.pdf}
+\caption{Overview of FT-HSBO. (a) Hard-gated service checks. (b) Upper mobility proposal/screening with lower link-window-aware refinement. All evaluated complete schedules are charged to the same global budget.}
+\label{fig:overview}
+\end{figure}
+
+\section{Flight-Timing Hierarchical Surrogate-Assisted Optimization}
+\subsection{Motivation and Overview}
+Direct full-space modeling of $U(\mathbf{x})$ is inefficient when early observations are mostly zero. FT-HSBO instead searches over mobility candidates after lower assignment/timing refinement, exploiting that mobility determines coarse rate-feasible opportunities while timing determines hard-window capture, as summarized in Fig.~\ref{fig:overview}.
+
+\subsection{Upper Mobility Screening and Lower Refinement}
+At the upper level, FT-HSBO uses a counted stochastic screening rule rather than an analytic EI/PI acquisition. It first evaluates up to 15 policy-generated complete schedules from five policies (Max-Rate, EDF-Rate, Nearest-Feasible, Reward-Density, Mixed) and noise levels $\{0,0.04,0.09\}$. It then initializes an upper queue with $n_0^u=6$ mobility candidates: one greedy upper vector and five greedy-perturbed or random variants. After the queue is exhausted, a new upper is sampled around the incumbent best with probability 0.65 using $\mathcal{N}(0,0.12^2I)$ noise, and uniformly at random otherwise.
+
+For each upper vector, lower refinement receives at most $B_l=20$ complete-schedule evaluations. It starts from 10 lower observations (four heuristic and six random). The subsequent pool contains 70 local perturbations, 70 random candidates, and, with heuristic presearch enabled, 11 additional window/rate-guided candidates. A lower GP with a Mat\'ern-5/2 kernel and white noise ranks candidates by posterior mean, uncertainty, surrogate-gradient norm, and diversity/Pareto screening; up to four candidates are evaluated per batch. Every evaluated lower candidate is concatenated with the current upper vector and submitted as a complete schedule. All such evaluations, including policy presearch and initialization evaluations, are counted against the same global budget $B$.
+
+\FloatBarrier
+\section{Simulation Results and Discussion}
+\subsection{Dataset Generation and Metrics}
+For paired comparison, each seed defines one matched instance shared by all algorithms. UAV initial horizontal positions are placed on the square boundary with a random phase and small boundary jitter. Node locations are uniformly distributed in the area; $L_j\sim\mathcal{U}(1,5)$ Mbits, $r_j\sim\mathcal{U}(5,15)$, $a_j\sim\mathcal{U}(0,T-W)$, and $b_j=a_j+W$. Experiments use the distance path-loss channel with $B_{\rm link}=1$ MHz and $R_{\min}=15$ Mbps as a communication-constrained stress setting; lower thresholds are tested in Fig.~\ref{fig:sensitivity}. Table~\ref{tab:params} lists the parameters and scales. Both cases use 300 complete-schedule true-utility evaluations over 20 seeds.
+
+\begin{table}[!ht]
+\caption{Simulation Parameters and Benchmark Settings}
+\label{tab:params}
+\centering
+\footnotesize
+\begingroup
+\setlength{\tabcolsep}{2.8pt}
+\renewcommand{\arraystretch}{1.14}
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lll@{}}
+\toprule
+Parameter & Symbol & Value \\
+\midrule
+Area / horizon / altitude & -- & $1000^2\,\mathrm{m}^2$ / 300 s / 100 m \\
+Speed / service duration & $v_i,c$ & 5--25 m/s / 5 s \\
+Bandwidth / power / noise & $B_{\rm link},P_{\rm tx},\sigma^2$ & 1 MHz / 23 dBm / $-104$ dBm \\
+Channel parameters & $\beta_0,\alpha$ & $-30$ dB / 2.5 \\
+Threshold / packet size & $R_{\min},L_j$ & 15 Mbps / 1--5 Mbits \\
+Priority / window width & $r_j,W$ & 5--15 / 30 s \\
+Normalization / weights & $d_0,\lambda_m,\lambda_c$ & 100 m / 0.01, 2.0 \\
+\midrule
+Scale & $(N,M,K)$ & Dim./Seeds \\
+40-D & $(5,20,3)$ & 40 / 20 \\
+80-D & $(8,40,4)$ & 80 / 20 \\
+\bottomrule
+\end{tabular*}
+\endgroup
+\end{table}
+
+Baselines are RS, full-space BO, DE-rp \cite{storn1997}, Rate-Window Repair BO, EDF-Rate Greedy, Max-Rate Greedy, and Nearest-Feasible User. Full-space BO uses Latin-hypercube initialization, a Mat\'ern GP, and a $\mu+0.8\sigma$ score over 640 complete-vector candidates; Rate-Window Repair BO adds lower assignment/timing repair toward window/rate/completion-feasible services. Max-Rate, EDF-Rate, and Nearest-Feasible Greedy generate one complete schedule per counted evaluation using rate-, deadline-, and distance/feasibility-oriented scoring with increasing perturbation noise. Metrics are final best utility, collected packet priority, conditional first feasible evaluation index (Cond. FFI), feasible evaluation rate, and discovery success. Cond. FFI excludes failed runs, which are counted through discovery success.
+
+\subsection{Sparsity Evidence}
+An independent Monte Carlo audit with 50000 uniformly sampled complete schedules confirms sparse feedback. In the 40-D and 80-D settings, the window-hit ratios are 79.88\% and 96.79\%, respectively, but rate/completion feasibility drops to 0.22\% and 0.30\%, and positive-utility ratios are only 0.218\% and 0.238\%. With $R_{\min}=15$ Mbps and $c=5$ s, the rate threshold is more restrictive than packet completion for $L_j\le 5$ Mbits, so the adopted stress setting is dominated by mobility, packet windows, and rate-feasible service; the completion gate is retained for more general packet-size/service-duration regimes.
+
+\subsection{Main Performance Comparison}
+Table~\ref{tab:main} reports final utility and collected packet priority (Served Pri.; before mobility/conflict penalties), as mean $\pm$ standard deviation. FT-HSBO obtains the highest utility in both scales and improves over Max-Rate Greedy, the best competing baseline, by 27.4\% in 40-D and 63.5\% in 80-D. Seed-wise Wilcoxon tests give two-sided $p$-values of $9.82\times10^{-4}$ and $6.55\times10^{-4}$, respectively. Across heterogeneous packet-layout seeds, FT-HSBO wins/ties/loses against Max-Rate in 14/6/0 (40-D) and 15/5/0 (80-D), confirming paired gains despite large standard deviations.
+
+\begin{table}[!ht]
+\caption{Main Comparison: Final Utility and Served Priority}
+\label{tab:main}
+\centering
+\scriptsize
+\begingroup
+\setlength{\tabcolsep}{2.4pt}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}llcc@{}}
+\toprule
+Method & Metric & 40-D & 80-D \\
+\midrule
+RS & Utility & $3.58\pm4.05$ & $2.60\pm3.13$ \\
+ & Served Pri. & $5.34\pm5.74$ & $5.64\pm5.73$ \\
+\addlinespace[1pt]
+Full BO & Utility & $1.98\pm3.06$ & $2.38\pm3.52$ \\
+ & Served Pri. & $3.36\pm4.89$ & $3.90\pm5.58$ \\
+\addlinespace[1pt]
+DE-rp & Utility & $10.62\pm4.50$ & $12.26\pm4.13$ \\
+ & Served Pri. & $14.34\pm4.77$ & $19.60\pm5.21$ \\
+\addlinespace[1pt]
+Repair BO & Utility & $14.19\pm7.03$ & $15.02\pm6.84$ \\
+ & Served Pri. & $17.57\pm7.40$ & $22.37\pm7.50$ \\
+\addlinespace[1pt]
+EDF & Utility & $15.62\pm8.61$ & $11.15\pm9.58$ \\
+ & Served Pri. & $17.79\pm8.59$ & $18.20\pm9.94$ \\
+\addlinespace[1pt]
+Max-Rate & Utility & $30.18\pm13.90$ & $31.66\pm18.73$ \\
+ & Served Pri. & $32.49\pm13.86$ & $37.96\pm18.80$ \\
+\addlinespace[1pt]
+Nearest & Utility & $20.38\pm8.57$ & $28.53\pm20.57$ \\
+ & Served Pri. & $22.41\pm8.29$ & $34.38\pm20.62$ \\
+\addlinespace[1pt]
+FT-HSBO & Utility & $\mathbf{38.44\pm13.44}$ & $\mathbf{51.76\pm10.77}$ \\
+ & Served Pri. & $\mathbf{40.36\pm13.51}$ & $\mathbf{57.01\pm11.11}$ \\
+\bottomrule
+\end{tabular*}
+\endgroup
+\end{table}
+
+Full-space BO remains weak under sparse feedback; greedy baselines discover feasible services early but saturate without joint mobility-timing screening.
+
+\subsection{Feasible-Service Discovery}
+\begin{figure}[!ht]
+\centering
+{\scriptsize\makebox[\columnwidth][c]{%
+\textcolor[rgb]{0.17,0.63,0.17}{\rule[0.6ex]{4pt}{0.8pt}\hspace{0.6pt}\rule[0.6ex]{4pt}{0.8pt}} Repair BO\hspace{3pt}
+\textcolor[rgb]{0.84,0.15,0.16}{\rule[0.6ex]{5pt}{0.8pt}\raisebox{0.28ex}{.}\rule[0.6ex]{3pt}{0.8pt}} DE-rp\hspace{3pt}
+\textcolor[rgb]{0.58,0.40,0.74}{\raisebox{0.25ex}{.}\hspace{0.8pt}\raisebox{0.25ex}{.}\hspace{0.8pt}\raisebox{0.25ex}{.}} Full BO\hspace{3pt}
+\textcolor[rgb]{0.50,0.50,0.50}{\rule[0.6ex]{4pt}{0.8pt}\hspace{0.6pt}\rule[0.6ex]{4pt}{0.8pt}} RS\hspace{3pt}
+\textcolor[rgb]{0.12,0.47,0.71}{\rule[0.6ex]{9pt}{0.8pt}} FT-HSBO\hspace{3pt}
+\textcolor[rgb]{1.00,0.50,0.05}{\rule[0.6ex]{4pt}{0.8pt}\hspace{0.6pt}\rule[0.6ex]{4pt}{0.8pt}} Max-Rate}}
+\vspace{-2pt}
+\safeincludegraphics[width=\columnwidth,trim=0 0 0 27pt,clip]{figures/fig2.pdf}
+\caption{Discovery and optimization dynamics in the 80-D setting over 20 seeds: (a) discovery success rate and (b) mean best-so-far utility.}
+\label{fig:ffi}
+\end{figure}
+
+Fig.~\ref{fig:ffi} shows FT-HSBO and Max-Rate discover positives in all 80-D runs, while Full BO succeeds in 35\%; FT-HSBO keeps improving beyond discovery.
+
+\FloatBarrier
+\subsection{Ablation, Sensitivity, and Channel Robustness}
+Table~\ref{tab:ablation} isolates the two FT-HSBO components in a 10-seed ablation; Pos. rate denotes positive-evaluation rate and Cond. FFI is computed over successful runs. Removing upper mobility screening reduces mean utility from 39.07 to 18.53, even though the non-hierarchical variant has a higher Pos. rate. Removing guided lower presearch further reduces utility to 9.25. Thus, both flight-timing decomposition and known window/rate feasibility cues contribute substantially in this benchmark; packet sizes are used only for completion checking.
+
+\begin{table}[!ht]
+\caption{Component Ablation in the 40-D Setting (10 Seeds)}
+\label{tab:ablation}
+\centering
+\footnotesize
+\begingroup
+\setlength{\tabcolsep}{2.6pt}
+\renewcommand{\arraystretch}{1.14}
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lccc@{}}
+\toprule
+Method & Utility & Pos. rate & Cond. FFI \\
+\midrule
+FT-HSBO & $\mathbf{39.07\pm12.47}$ & 4.37\% & $\mathbf{1.0}$ \\
+W/o hierarchy & $18.53\pm8.74$ & 22.80\% & 18.0 \\
+W/o guided presearch & $9.25\pm3.05$ & 0.77\% & 8.0 \\
+Repair BO & $14.11\pm5.33$ & 13.90\% & 44.5 \\
+\bottomrule
+\end{tabular*}
+\endgroup
+\end{table}
+
+Fig.~\ref{fig:sensitivity} shows that FT-HSBO keeps the highest mean utility across tested validity-window widths and rate thresholds under the adopted utility weights. Increasing $R_{\min}$ from 8 Mbps to 15 Mbps reduces utility by shrinking rate-feasible regions, confirming that the 15-Mbps case is a stringent stress setting rather than the only operating point.
+
+\begin{figure}[!ht]
+\centering
+\safeincludegraphics[width=\columnwidth]{figures/fig3_sidebyside.pdf}
+\caption{Sensitivity of mean final utility in the 40-D setting: (a) window width and (b) rate threshold. Means are computed over matched seeds; error bars are omitted for readability.}
+\label{fig:sensitivity}
+\end{figure}
+
+Under an expected LoS/NLoS path-loss variant with the same 40-D instances, seeds, budget, and baselines, FT-HSBO remains best with $37.73\pm12.75$ mean utility, outperforming Max-Rate Greedy by 31.5\% ($28.69\pm6.98$). Full-space BO obtains $1.76\pm3.76$ mean utility with 20\% success, suggesting that the observed gain is not merely an artifact of the distance-only path-loss model.
+
+\FloatBarrier
+\section{Conclusion}
+This letter formulated sparse-window multi-UAV urgent IoT packet collection as hard-gated wireless service scheduling and proposed FT-HSBO, a budgeted hierarchical surrogate-assisted optimizer with known pre-evaluation feasibility cues. By combining upper mobility screening with lower link-window-aware assignment/timing refinement under a counted complete-schedule budget, FT-HSBO improves final utility over representative greedy, repair-based, evolutionary, and full-space BO baselines, and remains effective under an expected LoS/NLoS channel variant.
+
+\begin{thebibliography}{13}
+\bibitem{sun2024}
+H. Sun, Y. Zhou, J. Tang, Z. Kang, X. Wang, and T. Q. S. Quek, ``Average AoI-minimal trajectory design for UAV-assisted IoT data collection system: A Safe-TD3 approach,'' \emph{IEEE Wireless Communications Letters}, vol. 13, no. 2, pp. 530--534, Feb. 2024.
+
+\bibitem{ge2024}
+L. Ge \emph{et al.}, ``Joint resource allocation and trajectory design for resilient multi-UAV communication networks,'' \emph{IEEE Wireless Communications Letters}, vol. 13, no. 4, pp. 1127--1131, Apr. 2024.
+
+\bibitem{zhong2024}
+Z. Zhong \emph{et al.}, ``Distributed multi-UAV trajectory planning for downlink transmission: A GNN-enhanced DRL approach,'' \emph{IEEE Wireless Communications Letters}, vol. 13, no. 12, pp. 3578--3582, Dec. 2024.
+
+\bibitem{yuan2025}
+Y. Yuan \emph{et al.}, ``Semantic-AI-based trajectory design of multiple UAV base stations in sparse and mobile user environments,'' \emph{IEEE Wireless Communications Letters}, vol. 14, no. 2, pp. 335--339, Feb. 2025.
+
+\bibitem{say2021}
+S. Say, H. Inata, J. Liu, and S. Shimamoto, ``Energy-efficient multi-UAV data collection for IoT networks with time deadlines,'' \emph{IEEE Transactions on Green Communications and Networking}, vol. 5, no. 4, pp. 2102--2115, Dec. 2021.
+
+\bibitem{wu2025}
+W. Wu, L. Zhang, J. Le, and Z. Lu, ``Integrated method for multi-UAV task assignment and trajectory planning with deadlock based on three-dimensional Dubins path,'' \emph{Scientific Reports}, vol. 15, Art. no. 24152, 2025.
+
+\bibitem{jones1998}
+D. R. Jones, M. Schonlau, and W. J. Welch, ``Efficient global optimization of expensive black-box functions,'' \emph{Journal of Global Optimization}, vol. 13, no. 4, pp. 455--492, 1998.
+
+\bibitem{rasmussen2006}
+C. E. Rasmussen and C. K. I. Williams, \emph{Gaussian Processes for Machine Learning}. Cambridge, MA, USA: MIT Press, 2006.
+
+\bibitem{gelbart2014}
+M. A. Gelbart, J. Snoek, and R. P. Adams, ``Bayesian optimization with unknown constraints,'' in \emph{Proc. 30th Conf. Uncertainty in Artificial Intelligence (UAI)}, Quebec City, QC, Canada, 2014, pp. 250--259.
+
+\bibitem{hernandez2016}
+J. M. Hernandez-Lobato, M. A. Gelbart, R. P. Adams, M. W. Hoffman, and Z. Ghahramani, ``A general framework for constrained Bayesian optimization using information-based search,'' \emph{Journal of Machine Learning Research}, vol. 17, no. 160, pp. 1--53, 2016.
+
+\bibitem{daulton2022}
+S. Daulton, X. Wan, D. Eriksson, M. Balandat, M. A. Osborne, and E. Bakshy, ``Bayesian optimization over discrete and mixed spaces via probabilistic reparameterization,'' in \emph{Advances in Neural Information Processing Systems}, vol. 35, 2022.
+
+\bibitem{ladosz2022}
+P. Ladosz, L. Weng, M. Kim, and H. Oh, ``Exploration in deep reinforcement learning: A survey,'' \emph{Information Fusion}, vol. 85, pp. 1--22, Sep. 2022.
+
+\bibitem{storn1997}
+R. Storn and K. Price, ``Differential evolution--a simple and efficient heuristic for global optimization over continuous spaces,'' \emph{Journal of Global Optimization}, vol. 11, no. 4, pp. 341--359, 1997.
+\end{thebibliography}
+
+\end{document}

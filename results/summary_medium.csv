@@ -1,0 +1,8 @@
+scale,method,final_best_mean,final_best_std,final_best_max,final_best_served_mean,runtime_mean,n_seeds,feasible_eval_rate,mean_current_reward
+medium,bo,0.0,0.0,0.0,0.1,42.48927881999407,10,0.0,0.0
+medium,ga,0.0,0.0,0.0,0.3,0.02666927000973369,10,0.0,0.0
+medium,greedy_distance,0.0,0.0,0.0,0.0,0.15907832999946545,10,0.0,0.0
+medium,greedy_reward_density,0.0,0.0,0.0,0.1,0.17959891996579241,10,0.0,0.0
+medium,hsbo,85.38126370110959,59.10404889976015,187.79786661634856,3.3,0.6425955600105226,10,0.018666666666666668,1.2171867991196954
+medium,pso,0.0,0.0,0.0,0.3,0.02429803999839347,10,0.0,0.0
+medium,random,0.0,0.0,0.0,0.3,0.025372359994798848,10,0.0,0.0

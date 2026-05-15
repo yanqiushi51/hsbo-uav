@@ -1,0 +1,6 @@
+eval_idx,utility,served_count,served_ratio,success_flag,first_feasible_flag,window_feasible_attempts,rate_feasible_attempts,transmission_feasible_attempts,outage_count,duplicate_count,conflict_count,energy_cost,best_so_far,runtime_sec,method,seed,scale,iteration,current_reward,best_reward,feasible,served_tasks,best_served_tasks,channel_model,window_width,rate_threshold_mbps,experiment,budget
+1,0.0,0,0.0,False,False,13,0,0,5,0,1,270.0,0.0,0.062322300000232644,ft_hsbo,0,medium,1,0.0,0.0,False,0,0,distance,30.0,20.0,rate_high,5
+2,0.0,0,0.0,False,False,2,0,0,0,0,1,270.0,0.0,0.06256259999645408,ft_hsbo,0,medium,2,0.0,0.0,False,0,0,distance,30.0,20.0,rate_high,5
+3,0.0,0,0.0,False,False,2,0,0,0,0,0,270.0,0.0,0.06278029999521095,ft_hsbo,0,medium,3,0.0,0.0,False,0,0,distance,30.0,20.0,rate_high,5
+4,0.0,0,0.0,False,False,3,0,0,0,0,0,270.0,0.0,0.06299449999642093,ft_hsbo,0,medium,4,0.0,0.0,False,0,0,distance,30.0,20.0,rate_high,5
+5,0.0,0,0.0,False,False,0,0,0,0,0,0,270.0,0.0,0.06321249999746215,ft_hsbo,0,medium,5,0.0,0.0,False,0,0,distance,30.0,20.0,rate_high,5

@@ -1,0 +1,9 @@
+eval_idx,utility,served_count,served_ratio,success_flag,first_feasible_flag,window_feasible_attempts,rate_feasible_attempts,transmission_feasible_attempts,outage_count,duplicate_count,conflict_count,energy_cost,best_so_far,runtime_sec,method,seed,scale,iteration,current_reward,best_reward,feasible,served_tasks,best_served_tasks,channel_model,window_width,rate_threshold_mbps,experiment,budget
+1,0.0,0,0.0,False,False,0,0,0,0,0,0,134.47232702747527,0.0,0.00019550000433810055,rs,0,small,1,0.0,0.0,False,0,0,distance,30.0,15.0,main,8
+2,0.0,0,0.0,False,False,0,0,0,0,0,0,104.91935858258869,0.0,0.00034190000587841496,rs,0,small,2,0.0,0.0,False,0,0,distance,30.0,15.0,main,8
+3,0.0,0,0.0,False,False,0,0,0,0,0,0,164.48452233106798,0.0,0.0004690000059781596,rs,0,small,3,0.0,0.0,False,0,0,distance,30.0,15.0,main,8
+4,0.0,0,0.0,False,False,0,0,0,0,0,0,106.02591817132168,0.0,0.000581899999815505,rs,0,small,4,0.0,0.0,False,0,0,distance,30.0,15.0,main,8
+5,0.0,0,0.0,False,False,0,0,0,0,0,0,138.6291852251285,0.0,0.0006909000003361143,rs,0,small,5,0.0,0.0,False,0,0,distance,30.0,15.0,main,8
+6,0.0,0,0.0,False,False,2,0,0,0,0,0,160.3995164193764,0.0,0.0007992000028025359,rs,0,small,6,0.0,0.0,False,0,0,distance,30.0,15.0,main,8
+7,0.0,0,0.0,False,False,0,0,0,0,0,0,127.44622385785028,0.0,0.0009067999999388121,rs,0,small,7,0.0,0.0,False,0,0,distance,30.0,15.0,main,8
+8,0.0,0,0.0,False,False,1,0,0,0,0,0,140.92776547843178,0.0,0.0010368000002927147,rs,0,small,8,0.0,0.0,False,0,0,distance,30.0,15.0,main,8

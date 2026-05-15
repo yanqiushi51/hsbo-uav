@@ -1,0 +1,321 @@
+method,method_id,scale,dimension,seed,budget,utility,best_eval_idx,success,first_feasible_index,positive_eval_rate,served_ratio,served_priority,served_count,outage_ratio_mean,energy_at_best,channel_model,window_width,rate_threshold_mbps,source_log
+RS,rs,medium,40-D,0,300,7.44017,107,True,107.0,0.003333,0.05,9.799879,1,0.043167,235.970911,distance,30.0,15.0,logs/main/medium/rs/seed_0.csv
+RS,rs,medium,40-D,1,300,7.38232,64,True,64.0,0.006667,0.05,11.53866,1,0.085722,215.634032,distance,30.0,15.0,logs/main/medium/rs/seed_1.csv
+RS,rs,medium,40-D,2,300,0.0,1,False,,0.0,0.0,0.0,0,0.078611,203.328531,distance,30.0,15.0,logs/main/medium/rs/seed_2.csv
+RS,rs,medium,40-D,3,300,9.292545,109,True,109.0,0.003333,0.05,11.300902,1,0.055111,200.835677,distance,30.0,15.0,logs/main/medium/rs/seed_3.csv
+RS,rs,medium,40-D,4,300,0.0,1,False,,0.0,0.0,0.0,0,0.081389,327.011527,distance,30.0,15.0,logs/main/medium/rs/seed_4.csv
+RS,rs,medium,40-D,5,300,10.176896,106,True,106.0,0.006667,0.05,12.074956,1,0.030278,189.805993,distance,30.0,15.0,logs/main/medium/rs/seed_5.csv
+RS,rs,medium,40-D,6,300,0.0,1,False,,0.0,0.0,0.0,0,0.038333,269.93509,distance,30.0,15.0,logs/main/medium/rs/seed_6.csv
+RS,rs,medium,40-D,7,300,0.0,1,False,,0.0,0.0,0.0,0,0.052611,225.196931,distance,30.0,15.0,logs/main/medium/rs/seed_7.csv
+RS,rs,medium,40-D,8,300,0.0,1,False,,0.0,0.0,0.0,0,0.0515,198.624906,distance,30.0,15.0,logs/main/medium/rs/seed_8.csv
+RS,rs,medium,40-D,9,300,4.723561,211,True,211.0,0.003333,0.05,7.195767,1,0.038611,247.220558,distance,30.0,15.0,logs/main/medium/rs/seed_9.csv
+RS,rs,medium,40-D,10,300,0.0,1,False,,0.0,0.0,0.0,0,0.0625,279.707801,distance,30.0,15.0,logs/main/medium/rs/seed_10.csv
+RS,rs,medium,40-D,11,300,5.599029,176,True,176.0,0.003333,0.05,13.05136,1,0.050556,145.233129,distance,30.0,15.0,logs/main/medium/rs/seed_11.csv
+RS,rs,medium,40-D,12,300,7.026488,79,True,79.0,0.003333,0.05,9.19007,1,0.025556,216.358231,distance,30.0,15.0,logs/main/medium/rs/seed_12.csv
+RS,rs,medium,40-D,13,300,0.0,1,False,,0.0,0.0,0.0,0,0.034556,271.633159,distance,30.0,15.0,logs/main/medium/rs/seed_13.csv
+RS,rs,medium,40-D,14,300,10.392935,180,True,180.0,0.003333,0.05,14.263955,1,0.098611,187.102028,distance,30.0,15.0,logs/main/medium/rs/seed_14.csv
+RS,rs,medium,40-D,15,300,0.0,1,False,,0.0,0.0,0.0,0,0.049,242.071706,distance,30.0,15.0,logs/main/medium/rs/seed_15.csv
+RS,rs,medium,40-D,16,300,7.110085,286,True,286.0,0.003333,0.05,11.768944,1,0.056444,265.885826,distance,30.0,15.0,logs/main/medium/rs/seed_16.csv
+RS,rs,medium,40-D,17,300,2.523067,53,True,53.0,0.003333,0.05,6.713636,1,0.085889,219.056876,distance,30.0,15.0,logs/main/medium/rs/seed_17.csv
+RS,rs,medium,40-D,18,300,0.0,1,False,,0.0,0.0,0.0,0,0.046389,241.174941,distance,30.0,15.0,logs/main/medium/rs/seed_18.csv
+RS,rs,medium,40-D,19,300,0.0,1,False,,0.0,0.0,0.0,0,0.070556,200.845394,distance,30.0,15.0,logs/main/medium/rs/seed_19.csv
+RS,rs,large,80-D,0,300,2.503562,98,True,98.0,0.01,0.025,6.995154,1,0.076437,449.159286,distance,30.0,15.0,logs/main/large/rs/seed_0.csv
+RS,rs,large,80-D,1,300,2.133648,116,True,116.0,0.006667,0.025,7.950064,1,0.042952,381.641667,distance,30.0,15.0,logs/main/large/rs/seed_1.csv
+RS,rs,large,80-D,2,300,0.0,1,False,,0.0,0.0,0.0,0,0.075389,333.389398,distance,30.0,15.0,logs/main/large/rs/seed_2.csv
+RS,rs,large,80-D,3,300,0.0,1,False,,0.0,0.0,0.0,0,0.092488,345.262483,distance,30.0,15.0,logs/main/large/rs/seed_3.csv
+RS,rs,large,80-D,4,300,0.0,1,False,,0.0,0.0,0.0,0,0.020583,511.023389,distance,30.0,15.0,logs/main/large/rs/seed_4.csv
+RS,rs,large,80-D,5,300,0.0,1,False,,0.0,0.0,0.0,0,0.068103,348.989063,distance,30.0,15.0,logs/main/large/rs/seed_5.csv
+RS,rs,large,80-D,6,300,5.301778,223,True,223.0,0.003333,0.025,11.694432,1,0.044234,439.265397,distance,30.0,15.0,logs/main/large/rs/seed_6.csv
+RS,rs,large,80-D,7,300,0.0,1,False,,0.0,0.0,0.0,0,0.072827,333.943947,distance,30.0,15.0,logs/main/large/rs/seed_7.csv
+RS,rs,large,80-D,8,300,0.0,1,False,,0.0,0.0,0.0,0,0.061058,318.019588,distance,30.0,15.0,logs/main/large/rs/seed_8.csv
+RS,rs,large,80-D,9,300,3.926563,114,True,114.0,0.003333,0.025,14.383344,1,0.07654,445.678065,distance,30.0,15.0,logs/main/large/rs/seed_9.csv
+RS,rs,large,80-D,10,300,3.243478,293,True,218.0,0.006667,0.025,10.742176,1,0.069865,349.869809,distance,30.0,15.0,logs/main/large/rs/seed_10.csv
+RS,rs,large,80-D,11,300,2.435981,87,True,58.0,0.01,0.025,6.156604,1,0.104937,372.062308,distance,30.0,15.0,logs/main/large/rs/seed_11.csv
+RS,rs,large,80-D,12,300,11.091775,197,True,124.0,0.006667,0.025,13.720295,1,0.073282,262.852003,distance,30.0,15.0,logs/main/large/rs/seed_12.csv
+RS,rs,large,80-D,13,300,6.908361,92,True,92.0,0.006667,0.025,14.340886,1,0.06023,343.252465,distance,30.0,15.0,logs/main/large/rs/seed_13.csv
+RS,rs,large,80-D,14,300,2.167645,114,True,114.0,0.006667,0.025,5.724933,1,0.110902,355.728806,distance,30.0,15.0,logs/main/large/rs/seed_14.csv
+RS,rs,large,80-D,15,300,6.310544,8,True,8.0,0.003333,0.025,11.609436,1,0.063044,329.889245,distance,30.0,15.0,logs/main/large/rs/seed_15.csv
+RS,rs,large,80-D,16,300,0.0,1,False,,0.0,0.0,0.0,0,0.08875,329.991933,distance,30.0,15.0,logs/main/large/rs/seed_16.csv
+RS,rs,large,80-D,17,300,0.0,1,False,,0.0,0.0,0.0,0,0.065373,357.146124,distance,30.0,15.0,logs/main/large/rs/seed_17.csv
+RS,rs,large,80-D,18,300,0.0,1,False,,0.0,0.0,0.0,0,0.07844,416.333303,distance,30.0,15.0,logs/main/large/rs/seed_18.csv
+RS,rs,large,80-D,19,300,5.946902,22,True,22.0,0.01,0.025,9.539364,1,0.085135,359.246189,distance,30.0,15.0,logs/main/large/rs/seed_19.csv
+Full BO,full_space_bo,medium,40-D,0,300,0.0,1,False,,0.0,0.0,0.0,0,0.080556,232.442909,distance,30.0,15.0,logs/main/medium/full_space_bo/seed_0.csv
+Full BO,full_space_bo,medium,40-D,1,300,0.0,1,False,,0.0,0.0,0.0,0,0.088611,190.475429,distance,30.0,15.0,logs/main/medium/full_space_bo/seed_1.csv
+Full BO,full_space_bo,medium,40-D,2,300,0.0,1,False,,0.0,0.0,0.0,0,0.081722,281.762372,distance,30.0,15.0,logs/main/medium/full_space_bo/seed_2.csv
+Full BO,full_space_bo,medium,40-D,3,300,9.154791,125,True,67.0,0.01,0.05,11.300902,1,0.107333,214.611127,distance,30.0,15.0,logs/main/medium/full_space_bo/seed_3.csv
+Full BO,full_space_bo,medium,40-D,4,300,0.0,1,False,,0.0,0.0,0.0,0,0.0865,215.008947,distance,30.0,15.0,logs/main/medium/full_space_bo/seed_4.csv
+Full BO,full_space_bo,medium,40-D,5,300,0.0,1,False,,0.0,0.0,0.0,0,0.039833,256.546703,distance,30.0,15.0,logs/main/medium/full_space_bo/seed_5.csv
+Full BO,full_space_bo,medium,40-D,6,300,5.507655,82,True,82.0,0.003333,0.05,12.322298,1,0.065556,281.464278,distance,30.0,15.0,logs/main/medium/full_space_bo/seed_6.csv
+Full BO,full_space_bo,medium,40-D,7,300,0.0,1,False,,0.0,0.0,0.0,0,0.049833,287.050355,distance,30.0,15.0,logs/main/medium/full_space_bo/seed_7.csv
+Full BO,full_space_bo,medium,40-D,8,300,4.032578,157,True,157.0,0.003333,0.05,6.815539,1,0.047333,278.296163,distance,30.0,15.0,logs/main/medium/full_space_bo/seed_8.csv
+Full BO,full_space_bo,medium,40-D,9,300,0.0,1,False,,0.0,0.0,0.0,0,0.043833,207.350981,distance,30.0,15.0,logs/main/medium/full_space_bo/seed_9.csv
+Full BO,full_space_bo,medium,40-D,10,300,2.136398,151,True,151.0,0.003333,0.05,6.494149,1,0.089389,235.775109,distance,30.0,15.0,logs/main/medium/full_space_bo/seed_10.csv
+Full BO,full_space_bo,medium,40-D,11,300,7.280017,41,True,41.0,0.003333,0.05,11.973611,1,0.099944,269.359365,distance,30.0,15.0,logs/main/medium/full_space_bo/seed_11.csv
+Full BO,full_space_bo,medium,40-D,12,300,4.752526,282,True,282.0,0.006667,0.05,9.19007,1,0.069167,243.754437,distance,30.0,15.0,logs/main/medium/full_space_bo/seed_12.csv
+Full BO,full_space_bo,medium,40-D,13,300,6.762446,274,True,274.0,0.003333,0.05,9.188298,1,0.042333,242.585235,distance,30.0,15.0,logs/main/medium/full_space_bo/seed_13.csv
+Full BO,full_space_bo,medium,40-D,14,300,0.0,1,False,,0.0,0.0,0.0,0,0.0755,214.025643,distance,30.0,15.0,logs/main/medium/full_space_bo/seed_14.csv
+Full BO,full_space_bo,medium,40-D,15,300,0.0,1,False,,0.0,0.0,0.0,0,0.034111,237.9642,distance,30.0,15.0,logs/main/medium/full_space_bo/seed_15.csv
+Full BO,full_space_bo,medium,40-D,16,300,0.0,1,False,,0.0,0.0,0.0,0,0.055667,276.194531,distance,30.0,15.0,logs/main/medium/full_space_bo/seed_16.csv
+Full BO,full_space_bo,medium,40-D,17,300,0.0,1,False,,0.0,0.0,0.0,0,0.079222,233.643425,distance,30.0,15.0,logs/main/medium/full_space_bo/seed_17.csv
+Full BO,full_space_bo,medium,40-D,18,300,0.0,1,False,,0.0,0.0,0.0,0,0.043722,277.957363,distance,30.0,15.0,logs/main/medium/full_space_bo/seed_18.csv
+Full BO,full_space_bo,medium,40-D,19,300,0.0,1,False,,0.0,0.0,0.0,0,0.068333,270.358701,distance,30.0,15.0,logs/main/medium/full_space_bo/seed_19.csv
+Full BO,full_space_bo,large,80-D,0,300,0.0,1,False,,0.0,0.0,0.0,0,0.078159,367.866649,distance,30.0,15.0,logs/main/large/full_space_bo/seed_0.csv
+Full BO,full_space_bo,large,80-D,1,300,0.0,1,False,,0.0,0.0,0.0,0,0.036952,347.587885,distance,30.0,15.0,logs/main/large/full_space_bo/seed_1.csv
+Full BO,full_space_bo,large,80-D,2,300,4.761811,2,True,2.0,0.003333,0.025,7.9615,1,0.06978,319.968905,distance,30.0,15.0,logs/main/large/full_space_bo/seed_2.csv
+Full BO,full_space_bo,large,80-D,3,300,0.0,1,False,,0.0,0.0,0.0,0,0.063878,385.740975,distance,30.0,15.0,logs/main/large/full_space_bo/seed_3.csv
+Full BO,full_space_bo,large,80-D,4,300,0.0,1,False,,0.0,0.0,0.0,0,0.010481,366.849797,distance,30.0,15.0,logs/main/large/full_space_bo/seed_4.csv
+Full BO,full_space_bo,large,80-D,5,300,4.4674,60,True,60.0,0.01,0.025,9.638244,1,0.12319,317.084398,distance,30.0,15.0,logs/main/large/full_space_bo/seed_5.csv
+Full BO,full_space_bo,large,80-D,6,300,0.0,1,False,,0.0,0.0,0.0,0,0.064349,362.598487,distance,30.0,15.0,logs/main/large/full_space_bo/seed_6.csv
+Full BO,full_space_bo,large,80-D,7,300,0.0,1,False,,0.0,0.0,0.0,0,0.08731,479.566194,distance,30.0,15.0,logs/main/large/full_space_bo/seed_7.csv
+Full BO,full_space_bo,large,80-D,8,300,0.0,1,False,,0.0,0.0,0.0,0,0.092115,404.132128,distance,30.0,15.0,logs/main/large/full_space_bo/seed_8.csv
+Full BO,full_space_bo,large,80-D,9,300,8.135964,191,True,14.0,0.01,0.025,14.045878,1,0.082243,390.991368,distance,30.0,15.0,logs/main/large/full_space_bo/seed_9.csv
+Full BO,full_space_bo,large,80-D,10,300,0.0,1,False,,0.0,0.0,0.0,0,0.057599,391.524736,distance,30.0,15.0,logs/main/large/full_space_bo/seed_10.csv
+Full BO,full_space_bo,large,80-D,11,300,0.0,1,False,,0.0,0.0,0.0,0,0.108448,348.492788,distance,30.0,15.0,logs/main/large/full_space_bo/seed_11.csv
+Full BO,full_space_bo,large,80-D,12,300,0.0,1,False,,0.0,0.0,0.0,0,0.080762,386.181947,distance,30.0,15.0,logs/main/large/full_space_bo/seed_12.csv
+Full BO,full_space_bo,large,80-D,13,300,9.453919,80,True,80.0,0.006667,0.025,13.141965,1,0.092829,368.804544,distance,30.0,15.0,logs/main/large/full_space_bo/seed_13.csv
+Full BO,full_space_bo,large,80-D,14,300,0.0,1,False,,0.0,0.0,0.0,0,0.124708,399.124871,distance,30.0,15.0,logs/main/large/full_space_bo/seed_14.csv
+Full BO,full_space_bo,large,80-D,15,300,4.965848,163,True,150.0,0.013333,0.025,10.196433,1,0.073385,323.058485,distance,30.0,15.0,logs/main/large/full_space_bo/seed_15.csv
+Full BO,full_space_bo,large,80-D,16,300,7.688073,120,True,120.0,0.003333,0.025,11.212997,1,0.099143,352.492378,distance,30.0,15.0,logs/main/large/full_space_bo/seed_16.csv
+Full BO,full_space_bo,large,80-D,17,300,0.0,1,False,,0.0,0.0,0.0,0,0.067209,401.644786,distance,30.0,15.0,logs/main/large/full_space_bo/seed_17.csv
+Full BO,full_space_bo,large,80-D,18,300,0.0,1,False,,0.0,0.0,0.0,0,0.080405,414.736951,distance,30.0,15.0,logs/main/large/full_space_bo/seed_18.csv
+Full BO,full_space_bo,large,80-D,19,300,8.214235,35,True,35.0,0.003333,0.025,11.796638,1,0.124937,358.240306,distance,30.0,15.0,logs/main/large/full_space_bo/seed_19.csv
+DE-rp,de_rp,medium,40-D,0,300,12.085688,87,True,10.0,0.08,0.1,19.627539,2,0.073131,154.185153,distance,30.0,15.0,logs/main/medium/de_rp/seed_0.csv
+DE-rp,de_rp,medium,40-D,1,300,10.643793,150,True,1.0,0.05,0.05,12.503647,1,0.207823,185.985403,distance,30.0,15.0,logs/main/medium/de_rp/seed_1.csv
+DE-rp,de_rp,medium,40-D,2,300,23.798386,219,True,53.0,0.03,0.1,29.437533,2,0.294012,163.914713,distance,30.0,15.0,logs/main/medium/de_rp/seed_2.csv
+DE-rp,de_rp,medium,40-D,3,300,5.950209,36,True,36.0,0.02,0.05,12.081448,1,0.082091,213.123884,distance,30.0,15.0,logs/main/medium/de_rp/seed_3.csv
+DE-rp,de_rp,medium,40-D,4,300,9.984222,276,True,5.0,0.036667,0.05,12.394732,1,0.044192,241.051037,distance,30.0,15.0,logs/main/medium/de_rp/seed_4.csv
+DE-rp,de_rp,medium,40-D,5,300,9.865624,217,True,163.0,0.01,0.05,13.700885,1,0.024272,183.526089,distance,30.0,15.0,logs/main/medium/de_rp/seed_5.csv
+DE-rp,de_rp,medium,40-D,6,300,5.594704,58,True,58.0,0.006667,0.05,9.180542,1,0.044751,158.5838,distance,30.0,15.0,logs/main/medium/de_rp/seed_6.csv
+DE-rp,de_rp,medium,40-D,7,300,12.137613,229,True,20.0,0.043333,0.05,14.671482,1,0.291913,253.386901,distance,30.0,15.0,logs/main/medium/de_rp/seed_7.csv
+DE-rp,de_rp,medium,40-D,8,300,8.204867,183,True,86.0,0.03,0.05,14.113564,1,0.06145,190.86964,distance,30.0,15.0,logs/main/medium/de_rp/seed_8.csv
+DE-rp,de_rp,medium,40-D,9,300,18.3076,136,True,28.0,0.03,0.1,20.016194,2,0.024468,170.859349,distance,30.0,15.0,logs/main/medium/de_rp/seed_9.csv
+DE-rp,de_rp,medium,40-D,10,300,8.628937,85,True,51.0,0.03,0.05,14.334385,1,0.114643,170.544723,distance,30.0,15.0,logs/main/medium/de_rp/seed_10.csv
+DE-rp,de_rp,medium,40-D,11,300,9.154221,260,True,179.0,0.013333,0.05,13.05136,1,0.031591,189.71393,distance,30.0,15.0,logs/main/medium/de_rp/seed_11.csv
+DE-rp,de_rp,medium,40-D,12,300,5.79033,42,True,13.0,0.013333,0.05,11.705105,1,0.046139,191.477482,distance,30.0,15.0,logs/main/medium/de_rp/seed_12.csv
+DE-rp,de_rp,medium,40-D,13,300,16.145704,105,True,33.0,0.026667,0.1,19.598583,2,0.033112,145.28797,distance,30.0,15.0,logs/main/medium/de_rp/seed_13.csv
+DE-rp,de_rp,medium,40-D,14,300,6.509216,265,True,17.0,0.02,0.05,9.129673,1,0.173155,262.045712,distance,30.0,15.0,logs/main/medium/de_rp/seed_14.csv
+DE-rp,de_rp,medium,40-D,15,300,11.061702,56,True,4.0,0.04,0.05,14.979921,1,0.260044,191.821921,distance,30.0,15.0,logs/main/medium/de_rp/seed_15.csv
+DE-rp,de_rp,medium,40-D,16,300,9.956527,200,True,140.0,0.02,0.05,12.646476,1,0.028325,268.99492,distance,30.0,15.0,logs/main/medium/de_rp/seed_16.csv
+DE-rp,de_rp,medium,40-D,17,300,11.259146,189,True,85.0,0.033333,0.05,12.943634,1,0.147393,168.448799,distance,30.0,15.0,logs/main/medium/de_rp/seed_17.csv
+DE-rp,de_rp,medium,40-D,18,300,6.735827,142,True,34.0,0.013333,0.05,8.877199,1,0.041485,214.137167,distance,30.0,15.0,logs/main/medium/de_rp/seed_18.csv
+DE-rp,de_rp,medium,40-D,19,300,10.672023,296,True,62.0,0.04,0.05,11.788949,1,0.054057,111.692625,distance,30.0,15.0,logs/main/medium/de_rp/seed_19.csv
+DE-rp,de_rp,large,80-D,0,300,14.816005,18,True,18.0,0.05,0.05,24.296368,2,0.11798,348.036266,distance,30.0,15.0,logs/main/large/de_rp/seed_0.csv
+DE-rp,de_rp,large,80-D,1,300,11.76194,121,True,1.0,0.043333,0.05,21.34691,2,0.118024,358.497086,distance,30.0,15.0,logs/main/large/de_rp/seed_1.csv
+DE-rp,de_rp,large,80-D,2,300,17.490492,102,True,71.0,0.033333,0.05,24.981666,2,0.216866,349.117408,distance,30.0,15.0,logs/main/large/de_rp/seed_2.csv
+DE-rp,de_rp,large,80-D,3,300,17.624133,191,True,38.0,0.106667,0.05,22.979661,2,0.242565,335.552774,distance,30.0,15.0,logs/main/large/de_rp/seed_3.csv
+DE-rp,de_rp,large,80-D,4,300,7.96361,254,True,118.0,0.016667,0.025,12.056971,1,0.041167,209.33614,distance,30.0,15.0,logs/main/large/de_rp/seed_4.csv
+DE-rp,de_rp,large,80-D,5,300,11.916641,291,True,8.0,0.066667,0.05,23.428926,2,0.088427,351.228441,distance,30.0,15.0,logs/main/large/de_rp/seed_5.csv
+DE-rp,de_rp,large,80-D,6,300,16.784082,243,True,49.0,0.07,0.05,26.293796,2,0.109551,350.971362,distance,30.0,15.0,logs/main/large/de_rp/seed_6.csv
+DE-rp,de_rp,large,80-D,7,300,8.002595,224,True,34.0,0.046667,0.025,13.628092,1,0.07856,362.549781,distance,30.0,15.0,logs/main/large/de_rp/seed_7.csv
+DE-rp,de_rp,large,80-D,8,300,10.516039,205,True,15.0,0.056667,0.05,17.126534,2,0.044627,261.049447,distance,30.0,15.0,logs/main/large/de_rp/seed_8.csv
+DE-rp,de_rp,large,80-D,9,300,13.068849,172,True,26.0,0.056667,0.05,22.682792,2,0.145551,361.394299,distance,30.0,15.0,logs/main/large/de_rp/seed_9.csv
+DE-rp,de_rp,large,80-D,10,300,10.352143,33,True,31.0,0.053333,0.05,17.905805,2,0.064257,355.366265,distance,30.0,15.0,logs/main/large/de_rp/seed_10.csv
+DE-rp,de_rp,large,80-D,11,300,6.782634,118,True,58.0,0.05,0.025,11.910399,1,0.091792,312.776513,distance,30.0,15.0,logs/main/large/de_rp/seed_11.csv
+DE-rp,de_rp,large,80-D,12,300,8.413533,145,True,50.0,0.02,0.05,18.510824,2,0.09455,409.729166,distance,30.0,15.0,logs/main/large/de_rp/seed_12.csv
+DE-rp,de_rp,large,80-D,13,300,15.100108,258,True,19.0,0.063333,0.05,21.543672,2,0.086739,244.356407,distance,30.0,15.0,logs/main/large/de_rp/seed_13.csv
+DE-rp,de_rp,large,80-D,14,300,10.367674,217,True,11.0,0.07,0.05,16.821218,2,0.27497,245.354323,distance,30.0,15.0,logs/main/large/de_rp/seed_14.csv
+DE-rp,de_rp,large,80-D,15,300,22.843386,135,True,55.0,0.046667,0.075,29.93666,3,0.035737,309.32738,distance,30.0,15.0,logs/main/large/de_rp/seed_15.csv
+DE-rp,de_rp,large,80-D,16,300,11.159761,206,True,13.0,0.03,0.025,14.888371,1,0.081469,372.861028,distance,30.0,15.0,logs/main/large/de_rp/seed_16.csv
+DE-rp,de_rp,large,80-D,17,300,7.617611,71,True,71.0,0.03,0.025,10.932774,1,0.049861,331.516291,distance,30.0,15.0,logs/main/large/de_rp/seed_17.csv
+DE-rp,de_rp,large,80-D,18,300,10.084663,135,True,6.0,0.04,0.05,19.138107,2,0.336793,305.344461,distance,30.0,15.0,logs/main/large/de_rp/seed_18.csv
+DE-rp,de_rp,large,80-D,19,300,12.509658,160,True,14.0,0.07,0.05,21.530648,2,0.088452,302.098982,distance,30.0,15.0,logs/main/large/de_rp/seed_19.csv
+Repair BO,repair_bo,medium,40-D,0,300,11.64205,297,True,10.0,0.13,0.05,13.902744,1,0.133817,226.069374,distance,30.0,15.0,logs/main/medium/repair_bo/seed_0.csv
+Repair BO,repair_bo,medium,40-D,1,300,14.5531,275,True,54.0,0.09,0.1,17.165839,2,0.303934,261.273963,distance,30.0,15.0,logs/main/medium/repair_bo/seed_1.csv
+Repair BO,repair_bo,medium,40-D,2,300,20.117583,223,True,53.0,0.323333,0.1,21.371989,2,0.545778,125.440539,distance,30.0,15.0,logs/main/medium/repair_bo/seed_2.csv
+Repair BO,repair_bo,medium,40-D,3,300,21.592035,101,True,36.0,0.18,0.1,23.38235,2,0.125849,179.031489,distance,30.0,15.0,logs/main/medium/repair_bo/seed_3.csv
+Repair BO,repair_bo,medium,40-D,4,300,7.682335,203,True,5.0,0.12,0.05,10.058932,1,0.06862,237.659704,distance,30.0,15.0,logs/main/medium/repair_bo/seed_4.csv
+Repair BO,repair_bo,medium,40-D,5,300,7.597189,196,True,105.0,0.013333,0.05,13.700885,1,0.029444,210.369572,distance,30.0,15.0,logs/main/medium/repair_bo/seed_5.csv
+Repair BO,repair_bo,medium,40-D,6,300,13.373292,269,True,58.0,0.066667,0.05,14.870043,1,0.234929,149.675118,distance,30.0,15.0,logs/main/medium/repair_bo/seed_6.csv
+Repair BO,repair_bo,medium,40-D,7,300,20.239021,59,True,20.0,0.163333,0.1,23.985717,2,0.311111,174.669534,distance,30.0,15.0,logs/main/medium/repair_bo/seed_7.csv
+Repair BO,repair_bo,medium,40-D,8,300,15.898956,233,True,150.0,0.26,0.1,20.139468,2,0.054078,224.051158,distance,30.0,15.0,logs/main/medium/repair_bo/seed_8.csv
+Repair BO,repair_bo,medium,40-D,9,300,8.422707,135,True,28.0,0.043333,0.05,12.846099,1,0.061899,242.339104,distance,30.0,15.0,logs/main/medium/repair_bo/seed_9.csv
+Repair BO,repair_bo,medium,40-D,10,300,18.942919,200,True,11.0,0.033333,0.1,22.741128,2,0.309341,179.820885,distance,30.0,15.0,logs/main/medium/repair_bo/seed_10.csv
+Repair BO,repair_bo,medium,40-D,11,300,8.738051,120,True,41.0,0.063333,0.1,19.416755,2,0.043659,267.870434,distance,30.0,15.0,logs/main/medium/repair_bo/seed_11.csv
+Repair BO,repair_bo,medium,40-D,12,300,3.377294,258,True,90.0,0.1,0.05,5.572546,1,0.067198,219.525187,distance,30.0,15.0,logs/main/medium/repair_bo/seed_12.csv
+Repair BO,repair_bo,medium,40-D,13,300,21.235183,125,True,87.0,0.1,0.1,25.128994,2,0.068278,189.381105,distance,30.0,15.0,logs/main/medium/repair_bo/seed_13.csv
+Repair BO,repair_bo,medium,40-D,14,300,11.462105,128,True,12.0,0.053333,0.05,13.934892,1,0.119595,247.278636,distance,30.0,15.0,logs/main/medium/repair_bo/seed_14.csv
+Repair BO,repair_bo,medium,40-D,15,300,31.042303,46,True,18.0,0.24,0.15,37.407593,3,0.444111,236.528966,distance,30.0,15.0,logs/main/medium/repair_bo/seed_15.csv
+Repair BO,repair_bo,medium,40-D,16,300,9.468126,216,True,196.0,0.066667,0.05,11.143158,1,0.063778,167.503191,distance,30.0,15.0,logs/main/medium/repair_bo/seed_16.csv
+Repair BO,repair_bo,medium,40-D,17,300,8.018922,232,True,70.0,0.046667,0.05,10.422403,1,0.163405,240.348119,distance,30.0,15.0,logs/main/medium/repair_bo/seed_17.csv
+Repair BO,repair_bo,medium,40-D,18,300,7.783261,99,True,33.0,0.04,0.05,10.004927,1,0.018648,222.16659,distance,30.0,15.0,logs/main/medium/repair_bo/seed_18.csv
+Repair BO,repair_bo,medium,40-D,19,300,22.575099,193,True,13.0,0.093333,0.1,24.108821,2,0.087423,153.372238,distance,30.0,15.0,logs/main/medium/repair_bo/seed_19.csv
+Repair BO,repair_bo,large,80-D,0,300,14.816005,18,True,18.0,0.07,0.05,24.296368,2,0.143351,348.036266,distance,30.0,15.0,logs/main/large/repair_bo/seed_0.csv
+Repair BO,repair_bo,large,80-D,1,300,6.695065,137,True,99.0,0.06,0.025,14.628646,1,0.158285,393.358032,distance,30.0,15.0,logs/main/large/repair_bo/seed_1.csv
+Repair BO,repair_bo,large,80-D,2,300,6.043622,112,True,112.0,0.013333,0.025,14.628187,1,0.185678,458.456466,distance,30.0,15.0,logs/main/large/repair_bo/seed_2.csv
+Repair BO,repair_bo,large,80-D,3,300,16.580443,182,True,38.0,0.113333,0.05,21.65404,2,0.235308,307.359612,distance,30.0,15.0,logs/main/large/repair_bo/seed_3.csv
+Repair BO,repair_bo,large,80-D,4,300,7.312573,137,True,96.0,0.043333,0.05,16.740646,2,0.037457,342.807308,distance,30.0,15.0,logs/main/large/repair_bo/seed_4.csv
+Repair BO,repair_bo,large,80-D,5,300,9.470155,125,True,8.0,0.043333,0.025,13.287981,1,0.078985,381.782524,distance,30.0,15.0,logs/main/large/repair_bo/seed_5.csv
+Repair BO,repair_bo,large,80-D,6,300,25.541778,78,True,49.0,0.106667,0.075,37.119074,3,0.177353,357.729617,distance,30.0,15.0,logs/main/large/repair_bo/seed_6.csv
+Repair BO,repair_bo,large,80-D,7,300,21.607991,280,True,34.0,0.12,0.05,26.402489,2,0.105461,279.449778,distance,30.0,15.0,logs/main/large/repair_bo/seed_7.csv
+Repair BO,repair_bo,large,80-D,8,300,25.267843,281,True,15.0,0.306667,0.075,32.8798,3,0.132126,361.195639,distance,30.0,15.0,logs/main/large/repair_bo/seed_8.csv
+Repair BO,repair_bo,large,80-D,9,300,14.125785,199,True,26.0,0.126667,0.05,19.630386,2,0.079664,350.460057,distance,30.0,15.0,logs/main/large/repair_bo/seed_9.csv
+Repair BO,repair_bo,large,80-D,10,300,7.658348,140,True,39.0,0.023333,0.025,14.068886,1,0.020182,441.053799,distance,30.0,15.0,logs/main/large/repair_bo/seed_10.csv
+Repair BO,repair_bo,large,80-D,11,300,10.403832,193,True,19.0,0.03,0.025,14.017997,1,0.094885,361.416467,distance,30.0,15.0,logs/main/large/repair_bo/seed_11.csv
+Repair BO,repair_bo,large,80-D,12,300,17.081078,218,True,27.0,0.186667,0.05,26.17014,2,0.227065,308.906227,distance,30.0,15.0,logs/main/large/repair_bo/seed_12.csv
+Repair BO,repair_bo,large,80-D,13,300,18.130602,147,True,7.0,0.133333,0.05,25.908826,2,0.155481,377.822443,distance,30.0,15.0,logs/main/large/repair_bo/seed_13.csv
+Repair BO,repair_bo,large,80-D,14,300,24.534726,267,True,3.0,0.233333,0.075,34.486598,3,0.182636,395.1872,distance,30.0,15.0,logs/main/large/repair_bo/seed_14.csv
+Repair BO,repair_bo,large,80-D,15,300,18.125898,106,True,16.0,0.186667,0.075,29.884281,3,0.17255,375.838288,distance,30.0,15.0,logs/main/large/repair_bo/seed_15.csv
+Repair BO,repair_bo,large,80-D,16,300,22.033839,140,True,21.0,0.163333,0.05,26.412597,2,0.117439,237.875768,distance,30.0,15.0,logs/main/large/repair_bo/seed_16.csv
+Repair BO,repair_bo,large,80-D,17,300,13.45365,285,True,19.0,0.186667,0.05,16.460215,2,0.12283,300.656497,distance,30.0,15.0,logs/main/large/repair_bo/seed_17.csv
+Repair BO,repair_bo,large,80-D,18,300,3.383987,148,True,32.0,0.02,0.025,14.893909,1,0.266222,350.992198,distance,30.0,15.0,logs/main/large/repair_bo/seed_18.csv
+Repair BO,repair_bo,large,80-D,19,300,18.071494,153,True,7.0,0.283333,0.05,23.78043,2,0.104879,370.893623,distance,30.0,15.0,logs/main/large/repair_bo/seed_19.csv
+EDF,edf_rate_greedy,medium,40-D,0,300,38.081487,1,True,1.0,0.04,0.2,41.500336,4,0.361832,141.884913,distance,30.0,15.0,logs/main/medium/edf_rate_greedy/seed_0.csv
+EDF,edf_rate_greedy,medium,40-D,1,300,23.568788,1,True,1.0,0.033333,0.1,25.711637,2,0.248982,214.284953,distance,30.0,15.0,logs/main/medium/edf_rate_greedy/seed_1.csv
+EDF,edf_rate_greedy,medium,40-D,2,300,27.928563,1,True,1.0,0.04,0.1,29.555621,2,0.287835,162.705791,distance,30.0,15.0,logs/main/medium/edf_rate_greedy/seed_2.csv
+EDF,edf_rate_greedy,medium,40-D,3,300,4.482321,30,True,1.0,0.03,0.05,6.26755,1,0.233181,178.522914,distance,30.0,15.0,logs/main/medium/edf_rate_greedy/seed_3.csv
+EDF,edf_rate_greedy,medium,40-D,4,300,1.427612,146,True,5.0,0.01,0.05,5.881694,1,0.205803,245.408222,distance,30.0,15.0,logs/main/medium/edf_rate_greedy/seed_4.csv
+EDF,edf_rate_greedy,medium,40-D,5,300,10.635571,1,True,1.0,0.016667,0.05,12.074956,1,0.170809,143.938472,distance,30.0,15.0,logs/main/medium/edf_rate_greedy/seed_5.csv
+EDF,edf_rate_greedy,medium,40-D,6,300,20.275604,1,True,1.0,0.05,0.1,23.603564,2,0.186989,132.795982,distance,30.0,15.0,logs/main/medium/edf_rate_greedy/seed_6.csv
+EDF,edf_rate_greedy,medium,40-D,7,300,16.939049,1,True,1.0,0.016667,0.1,18.761529,2,0.175327,182.247948,distance,30.0,15.0,logs/main/medium/edf_rate_greedy/seed_7.csv
+EDF,edf_rate_greedy,medium,40-D,8,300,12.76588,12,True,1.0,0.016667,0.05,14.560959,1,0.261885,179.507877,distance,30.0,15.0,logs/main/medium/edf_rate_greedy/seed_8.csv
+EDF,edf_rate_greedy,medium,40-D,9,300,11.320492,23,True,3.0,0.013333,0.05,12.846099,1,0.151277,152.560646,distance,30.0,15.0,logs/main/medium/edf_rate_greedy/seed_9.csv
+EDF,edf_rate_greedy,medium,40-D,10,300,26.384557,59,True,2.0,0.036667,0.1,27.710022,2,0.328988,132.546558,distance,30.0,15.0,logs/main/medium/edf_rate_greedy/seed_10.csv
+EDF,edf_rate_greedy,medium,40-D,11,300,10.406622,1,True,1.0,0.013333,0.05,12.271117,1,0.112521,186.449578,distance,30.0,15.0,logs/main/medium/edf_rate_greedy/seed_11.csv
+EDF,edf_rate_greedy,medium,40-D,12,300,17.26395,1,True,1.0,0.033333,0.1,18.950042,2,0.130124,168.609207,distance,30.0,15.0,logs/main/medium/edf_rate_greedy/seed_12.csv
+EDF,edf_rate_greedy,medium,40-D,13,300,12.631825,77,True,1.0,0.02,0.05,14.083195,1,0.162355,145.136973,distance,30.0,15.0,logs/main/medium/edf_rate_greedy/seed_13.csv
+EDF,edf_rate_greedy,medium,40-D,14,300,13.781673,1,True,1.0,0.02,0.1,15.607455,2,0.239355,182.578218,distance,30.0,15.0,logs/main/medium/edf_rate_greedy/seed_14.csv
+EDF,edf_rate_greedy,medium,40-D,15,300,11.068142,6,True,1.0,0.016667,0.05,14.979921,1,0.137382,191.177901,distance,30.0,15.0,logs/main/medium/edf_rate_greedy/seed_15.csv
+EDF,edf_rate_greedy,medium,40-D,16,300,10.987377,1,True,1.0,0.02,0.05,12.646476,1,0.145826,165.909963,distance,30.0,15.0,logs/main/medium/edf_rate_greedy/seed_16.csv
+EDF,edf_rate_greedy,medium,40-D,17,300,10.967221,1,True,1.0,0.006667,0.1,13.320843,2,0.180056,235.362161,distance,30.0,15.0,logs/main/medium/edf_rate_greedy/seed_17.csv
+EDF,edf_rate_greedy,medium,40-D,18,300,21.448076,1,True,1.0,0.023333,0.15,23.226082,3,0.149559,177.80056,distance,30.0,15.0,logs/main/medium/edf_rate_greedy/seed_18.csv
+EDF,edf_rate_greedy,medium,40-D,19,300,9.950651,1,True,1.0,0.01,0.1,12.298443,2,0.12147,234.779215,distance,30.0,15.0,logs/main/medium/edf_rate_greedy/seed_19.csv
+EDF,edf_rate_greedy,large,80-D,0,300,7.858135,1,True,1.0,0.006667,0.05,15.443213,2,0.150686,358.50776,distance,30.0,15.0,logs/main/large/edf_rate_greedy/seed_0.csv
+EDF,edf_rate_greedy,large,80-D,1,300,20.117151,1,True,1.0,0.006667,0.075,28.928159,3,0.163219,281.100856,distance,30.0,15.0,logs/main/large/edf_rate_greedy/seed_1.csv
+EDF,edf_rate_greedy,large,80-D,2,300,8.318121,1,True,1.0,0.003333,0.05,17.784096,2,0.094738,346.597436,distance,30.0,15.0,logs/main/large/edf_rate_greedy/seed_2.csv
+EDF,edf_rate_greedy,large,80-D,3,300,8.586413,1,True,1.0,0.01,0.05,18.116812,2,0.22717,353.039936,distance,30.0,15.0,logs/main/large/edf_rate_greedy/seed_3.csv
+EDF,edf_rate_greedy,large,80-D,4,300,2.071964,70,True,70.0,0.003333,0.025,10.002262,1,0.079757,193.02975,distance,30.0,15.0,logs/main/large/edf_rate_greedy/seed_4.csv
+EDF,edf_rate_greedy,large,80-D,5,300,10.401374,1,True,1.0,0.016667,0.05,15.104229,2,0.316483,270.285474,distance,30.0,15.0,logs/main/large/edf_rate_greedy/seed_5.csv
+EDF,edf_rate_greedy,large,80-D,6,300,4.642627,155,True,1.0,0.006667,0.025,9.972679,1,0.096891,333.005217,distance,30.0,15.0,logs/main/large/edf_rate_greedy/seed_6.csv
+EDF,edf_rate_greedy,large,80-D,7,300,0.400498,1,True,1.0,0.003333,0.025,8.695363,1,0.157949,429.486548,distance,30.0,15.0,logs/main/large/edf_rate_greedy/seed_7.csv
+EDF,edf_rate_greedy,large,80-D,8,300,16.933929,1,True,1.0,0.003333,0.05,22.030749,2,0.183891,309.681981,distance,30.0,15.0,logs/main/large/edf_rate_greedy/seed_8.csv
+EDF,edf_rate_greedy,large,80-D,9,300,2.63062,46,True,46.0,0.01,0.025,14.045878,1,0.087722,341.5258,distance,30.0,15.0,logs/main/large/edf_rate_greedy/seed_9.csv
+EDF,edf_rate_greedy,large,80-D,10,300,1.998355,1,True,1.0,0.006667,0.025,5.145486,1,0.171821,314.713133,distance,30.0,15.0,logs/main/large/edf_rate_greedy/seed_10.csv
+EDF,edf_rate_greedy,large,80-D,11,300,22.745247,1,True,1.0,0.013333,0.05,26.056406,2,0.27059,331.115927,distance,30.0,15.0,logs/main/large/edf_rate_greedy/seed_11.csv
+EDF,edf_rate_greedy,large,80-D,12,300,26.042393,1,True,1.0,0.003333,0.075,35.916219,3,0.102184,387.382668,distance,30.0,15.0,logs/main/large/edf_rate_greedy/seed_12.csv
+EDF,edf_rate_greedy,large,80-D,13,300,9.169724,232,True,1.0,0.013333,0.025,14.340886,1,0.143583,317.116192,distance,30.0,15.0,logs/main/large/edf_rate_greedy/seed_13.csv
+EDF,edf_rate_greedy,large,80-D,14,300,8.922595,1,True,1.0,0.003333,0.05,18.658253,2,0.217471,373.565801,distance,30.0,15.0,logs/main/large/edf_rate_greedy/seed_14.csv
+EDF,edf_rate_greedy,large,80-D,15,300,13.850057,1,True,1.0,0.013333,0.05,18.811708,2,0.196381,296.165153,distance,30.0,15.0,logs/main/large/edf_rate_greedy/seed_15.csv
+EDF,edf_rate_greedy,large,80-D,16,300,28.318253,1,True,1.0,0.006667,0.1,35.696534,4,0.181726,337.828143,distance,30.0,15.0,logs/main/large/edf_rate_greedy/seed_16.csv
+EDF,edf_rate_greedy,large,80-D,17,300,0.0,1,False,,0.0,0.025,5.790179,1,0.153941,382.624388,distance,30.0,15.0,logs/main/large/edf_rate_greedy/seed_17.csv
+EDF,edf_rate_greedy,large,80-D,18,300,28.843463,1,True,1.0,0.006667,0.1,36.585623,4,0.164019,374.215998,distance,30.0,15.0,logs/main/large/edf_rate_greedy/seed_18.csv
+EDF,edf_rate_greedy,large,80-D,19,300,1.099544,1,True,1.0,0.006667,0.025,6.836347,1,0.109556,373.680313,distance,30.0,15.0,logs/main/large/edf_rate_greedy/seed_19.csv
+Max-Rate,max_rate_greedy,medium,40-D,0,300,34.035294,1,True,1.0,0.05,0.15,35.882013,3,0.287016,184.671984,distance,30.0,15.0,logs/main/medium/max_rate_greedy/seed_0.csv
+Max-Rate,max_rate_greedy,medium,40-D,1,300,33.977607,1,True,1.0,0.036667,0.15,37.959537,3,0.270354,198.192953,distance,30.0,15.0,logs/main/medium/max_rate_greedy/seed_1.csv
+Max-Rate,max_rate_greedy,medium,40-D,2,300,42.759254,1,True,1.0,0.053333,0.2,46.417676,4,0.224246,165.842137,distance,30.0,15.0,logs/main/medium/max_rate_greedy/seed_2.csv
+Max-Rate,max_rate_greedy,medium,40-D,3,300,36.484389,1,True,1.0,0.046667,0.15,37.974835,3,0.281495,149.044643,distance,30.0,15.0,logs/main/medium/max_rate_greedy/seed_3.csv
+Max-Rate,max_rate_greedy,medium,40-D,4,300,20.377721,1,True,1.0,0.02,0.1,22.453664,2,0.213677,207.594371,distance,30.0,15.0,logs/main/medium/max_rate_greedy/seed_4.csv
+Max-Rate,max_rate_greedy,medium,40-D,5,300,25.550439,1,True,1.0,0.013333,0.1,27.143195,2,0.124963,159.275651,distance,30.0,15.0,logs/main/medium/max_rate_greedy/seed_5.csv
+Max-Rate,max_rate_greedy,medium,40-D,6,300,24.275073,1,True,1.0,0.026667,0.1,26.00914,2,0.142866,173.406682,distance,30.0,15.0,logs/main/medium/max_rate_greedy/seed_6.csv
+Max-Rate,max_rate_greedy,medium,40-D,7,300,21.760018,1,True,1.0,0.033333,0.1,23.599631,2,0.195326,183.961292,distance,30.0,15.0,logs/main/medium/max_rate_greedy/seed_7.csv
+Max-Rate,max_rate_greedy,medium,40-D,8,300,41.247161,1,True,1.0,0.03,0.15,42.578627,3,0.381435,133.146599,distance,30.0,15.0,logs/main/medium/max_rate_greedy/seed_8.csv
+Max-Rate,max_rate_greedy,medium,40-D,9,300,25.521109,1,True,1.0,0.036667,0.15,26.782521,3,0.215056,126.141147,distance,30.0,15.0,logs/main/medium/max_rate_greedy/seed_9.csv
+Max-Rate,max_rate_greedy,medium,40-D,10,300,24.103968,1,True,1.0,0.036667,0.1,27.710022,2,0.227311,160.605447,distance,30.0,15.0,logs/main/medium/max_rate_greedy/seed_10.csv
+Max-Rate,max_rate_greedy,medium,40-D,11,300,32.074804,1,True,1.0,0.026667,0.15,33.91546,3,0.157883,184.065624,distance,30.0,15.0,logs/main/medium/max_rate_greedy/seed_11.csv
+Max-Rate,max_rate_greedy,medium,40-D,12,300,36.66573,1,True,1.0,0.02,0.15,37.911187,3,0.140283,124.545723,distance,30.0,15.0,logs/main/medium/max_rate_greedy/seed_12.csv
+Max-Rate,max_rate_greedy,medium,40-D,13,300,17.297415,1,True,1.0,0.013333,0.1,20.5996,2,0.145797,130.218495,distance,30.0,15.0,logs/main/medium/max_rate_greedy/seed_13.csv
+Max-Rate,max_rate_greedy,medium,40-D,14,300,29.223388,1,True,1.0,0.023333,0.15,35.229795,3,0.236251,200.640687,distance,30.0,15.0,logs/main/medium/max_rate_greedy/seed_14.csv
+Max-Rate,max_rate_greedy,medium,40-D,15,300,7.704396,12,True,1.0,0.01,0.05,9.682497,1,0.152718,197.810067,distance,30.0,15.0,logs/main/medium/max_rate_greedy/seed_15.csv
+Max-Rate,max_rate_greedy,medium,40-D,16,300,9.711602,1,True,1.0,0.016667,0.05,11.768944,1,0.114265,205.734204,distance,30.0,15.0,logs/main/medium/max_rate_greedy/seed_16.csv
+Max-Rate,max_rate_greedy,medium,40-D,17,300,40.82255,1,True,1.0,0.033333,0.2,42.500009,4,0.277434,167.745895,distance,30.0,15.0,logs/main/medium/max_rate_greedy/seed_17.csv
+Max-Rate,max_rate_greedy,medium,40-D,18,300,27.522069,1,True,1.0,0.026667,0.15,29.441251,3,0.148423,191.918227,distance,30.0,15.0,logs/main/medium/max_rate_greedy/seed_18.csv
+Max-Rate,max_rate_greedy,medium,40-D,19,300,72.399095,1,True,1.0,0.026667,0.35,74.166945,7,0.230881,176.785013,distance,30.0,15.0,logs/main/medium/max_rate_greedy/seed_19.csv
+Max-Rate,max_rate_greedy,large,80-D,0,300,32.155998,1,True,1.0,0.006667,0.075,38.031594,3,0.150165,387.559569,distance,30.0,15.0,logs/main/large/max_rate_greedy/seed_0.csv
+Max-Rate,max_rate_greedy,large,80-D,1,300,25.171215,1,True,1.0,0.01,0.05,29.737187,2,0.178763,256.597175,distance,30.0,15.0,logs/main/large/max_rate_greedy/seed_1.csv
+Max-Rate,max_rate_greedy,large,80-D,2,300,5.870007,1,True,1.0,0.003333,0.025,14.628187,1,0.14938,275.817922,distance,30.0,15.0,logs/main/large/max_rate_greedy/seed_2.csv
+Max-Rate,max_rate_greedy,large,80-D,3,300,49.868423,1,True,1.0,0.016667,0.1,54.955888,4,0.209583,308.746454,distance,30.0,15.0,logs/main/large/max_rate_greedy/seed_3.csv
+Max-Rate,max_rate_greedy,large,80-D,4,300,45.638527,1,True,1.0,0.013333,0.1,51.753776,4,0.098978,211.524932,distance,30.0,15.0,logs/main/large/max_rate_greedy/seed_4.csv
+Max-Rate,max_rate_greedy,large,80-D,5,300,57.486963,1,True,1.0,0.04,0.125,64.519917,5,0.188975,303.295417,distance,30.0,15.0,logs/main/large/max_rate_greedy/seed_5.csv
+Max-Rate,max_rate_greedy,large,80-D,6,300,27.359101,1,True,1.0,0.01,0.075,37.988228,3,0.141611,262.912756,distance,30.0,15.0,logs/main/large/max_rate_greedy/seed_6.csv
+Max-Rate,max_rate_greedy,large,80-D,7,300,47.540084,1,True,1.0,0.016667,0.1,54.700689,4,0.236051,316.060522,distance,30.0,15.0,logs/main/large/max_rate_greedy/seed_7.csv
+Max-Rate,max_rate_greedy,large,80-D,8,300,18.061665,1,True,1.0,0.006667,0.05,25.381976,2,0.156699,332.031022,distance,30.0,15.0,logs/main/large/max_rate_greedy/seed_8.csv
+Max-Rate,max_rate_greedy,large,80-D,9,300,3.082637,4,True,1.0,0.01,0.025,10.590326,1,0.086999,350.768834,distance,30.0,15.0,logs/main/large/max_rate_greedy/seed_9.csv
+Max-Rate,max_rate_greedy,large,80-D,10,300,57.568289,1,True,1.0,0.023333,0.15,66.221396,6,0.26063,265.310682,distance,30.0,15.0,logs/main/large/max_rate_greedy/seed_10.csv
+Max-Rate,max_rate_greedy,large,80-D,11,300,35.531383,1,True,1.0,0.016667,0.075,39.142869,3,0.184952,361.148601,distance,30.0,15.0,logs/main/large/max_rate_greedy/seed_11.csv
+Max-Rate,max_rate_greedy,large,80-D,12,300,34.313887,1,True,1.0,0.013333,0.075,39.30082,3,0.143309,298.693346,distance,30.0,15.0,logs/main/large/max_rate_greedy/seed_12.csv
+Max-Rate,max_rate_greedy,large,80-D,13,300,30.680235,1,True,1.0,0.023333,0.075,35.562946,3,0.195734,288.271148,distance,30.0,15.0,logs/main/large/max_rate_greedy/seed_13.csv
+Max-Rate,max_rate_greedy,large,80-D,14,300,31.655896,1,True,1.0,0.006667,0.075,38.850366,3,0.274841,319.447031,distance,30.0,15.0,logs/main/large/max_rate_greedy/seed_14.csv
+Max-Rate,max_rate_greedy,large,80-D,15,300,19.029535,1,True,1.0,0.01,0.05,24.000011,2,0.188764,297.04764,distance,30.0,15.0,logs/main/large/max_rate_greedy/seed_15.csv
+Max-Rate,max_rate_greedy,large,80-D,16,300,70.364626,1,True,1.0,0.02,0.15,75.161866,6,0.224555,279.724056,distance,30.0,15.0,logs/main/large/max_rate_greedy/seed_16.csv
+Max-Rate,max_rate_greedy,large,80-D,17,300,25.428527,1,True,1.0,0.01,0.075,34.408746,3,0.145892,298.021917,distance,30.0,15.0,logs/main/large/max_rate_greedy/seed_17.csv
+Max-Rate,max_rate_greedy,large,80-D,18,300,7.683216,1,True,1.0,0.013333,0.025,12.518888,1,0.19491,283.567235,distance,30.0,15.0,logs/main/large/max_rate_greedy/seed_18.csv
+Max-Rate,max_rate_greedy,large,80-D,19,300,8.79754,1,True,1.0,0.013333,0.025,11.831094,1,0.218824,303.355491,distance,30.0,15.0,logs/main/large/max_rate_greedy/seed_19.csv
+Nearest,nearest_feasible_user,medium,40-D,0,300,43.646505,1,True,1.0,0.07,0.2,44.656021,4,0.410144,100.951575,distance,30.0,15.0,logs/main/medium/nearest_feasible_user/seed_0.csv
+Nearest,nearest_feasible_user,medium,40-D,1,300,12.068693,155,True,1.0,0.046667,0.05,14.172977,1,0.325397,210.428381,distance,30.0,15.0,logs/main/medium/nearest_feasible_user/seed_1.csv
+Nearest,nearest_feasible_user,medium,40-D,2,300,24.591813,1,True,1.0,0.04,0.1,26.150677,2,0.26816,155.886492,distance,30.0,15.0,logs/main/medium/nearest_feasible_user/seed_2.csv
+Nearest,nearest_feasible_user,medium,40-D,3,300,34.601893,1,True,1.0,0.073333,0.2,35.552693,4,0.37753,95.080047,distance,30.0,15.0,logs/main/medium/nearest_feasible_user/seed_3.csv
+Nearest,nearest_feasible_user,medium,40-D,4,300,12.693177,10,True,1.0,0.036667,0.1,20.327258,2,0.292544,163.408089,distance,30.0,15.0,logs/main/medium/nearest_feasible_user/seed_4.csv
+Nearest,nearest_feasible_user,medium,40-D,5,300,12.311866,36,True,1.0,0.023333,0.05,13.44231,1,0.172843,113.044486,distance,30.0,15.0,logs/main/medium/nearest_feasible_user/seed_5.csv
+Nearest,nearest_feasible_user,medium,40-D,6,300,22.603201,1,True,1.0,0.046667,0.1,23.603564,2,0.191969,100.036332,distance,30.0,15.0,logs/main/medium/nearest_feasible_user/seed_6.csv
+Nearest,nearest_feasible_user,medium,40-D,7,300,14.253187,1,True,1.0,0.03,0.1,15.618708,2,0.19455,136.552063,distance,30.0,15.0,logs/main/medium/nearest_feasible_user/seed_7.csv
+Nearest,nearest_feasible_user,medium,40-D,8,300,23.285795,13,True,1.0,0.073333,0.1,24.618053,2,0.32014,133.225845,distance,30.0,15.0,logs/main/medium/nearest_feasible_user/seed_8.csv
+Nearest,nearest_feasible_user,medium,40-D,9,300,17.521434,3,True,1.0,0.036667,0.1,22.693833,2,0.224812,117.239827,distance,30.0,15.0,logs/main/medium/nearest_feasible_user/seed_9.csv
+Nearest,nearest_feasible_user,medium,40-D,10,300,24.251178,20,True,1.0,0.07,0.1,25.21395,2,0.318455,96.277198,distance,30.0,15.0,logs/main/medium/nearest_feasible_user/seed_10.csv
+Nearest,nearest_feasible_user,medium,40-D,11,300,22.047719,1,True,1.0,0.056667,0.1,23.18707,2,0.233955,113.935149,distance,30.0,15.0,logs/main/medium/nearest_feasible_user/seed_11.csv
+Nearest,nearest_feasible_user,medium,40-D,12,300,17.478597,1,True,1.0,0.033333,0.1,18.950042,2,0.177687,147.144438,distance,30.0,15.0,logs/main/medium/nearest_feasible_user/seed_12.csv
+Nearest,nearest_feasible_user,medium,40-D,13,300,12.650545,160,True,4.0,0.013333,0.05,14.083195,1,0.147693,143.26503,distance,30.0,15.0,logs/main/medium/nearest_feasible_user/seed_13.csv
+Nearest,nearest_feasible_user,medium,40-D,14,300,25.509575,1,True,1.0,0.033333,0.15,26.881802,3,0.298489,137.222734,distance,30.0,15.0,logs/main/medium/nearest_feasible_user/seed_14.csv
+Nearest,nearest_feasible_user,medium,40-D,15,300,19.789897,8,True,1.0,0.033333,0.1,21.071477,2,0.237563,128.15801,distance,30.0,15.0,logs/main/medium/nearest_feasible_user/seed_15.csv
+Nearest,nearest_feasible_user,medium,40-D,16,300,11.120535,1,True,1.0,0.03,0.05,12.646476,1,0.15833,152.594088,distance,30.0,15.0,logs/main/medium/nearest_feasible_user/seed_16.csv
+Nearest,nearest_feasible_user,medium,40-D,17,300,21.526531,1,True,1.0,0.043333,0.15,26.924147,3,0.324557,139.761602,distance,30.0,15.0,logs/main/medium/nearest_feasible_user/seed_17.csv
+Nearest,nearest_feasible_user,medium,40-D,18,300,8.588119,16,True,1.0,0.03,0.05,10.004927,1,0.161052,141.680768,distance,30.0,15.0,logs/main/medium/nearest_feasible_user/seed_18.csv
+Nearest,nearest_feasible_user,medium,40-D,19,300,26.997397,1,True,1.0,0.046667,0.15,28.474473,3,0.248248,147.707571,distance,30.0,15.0,logs/main/medium/nearest_feasible_user/seed_19.csv
+Nearest,nearest_feasible_user,large,80-D,0,300,15.202426,1,True,1.0,0.013333,0.05,19.421572,2,0.23424,221.91461,distance,30.0,15.0,logs/main/large/nearest_feasible_user/seed_0.csv
+Nearest,nearest_feasible_user,large,80-D,1,300,51.045007,1,True,1.0,0.043333,0.15,56.554479,6,0.303303,150.947154,distance,30.0,15.0,logs/main/large/nearest_feasible_user/seed_1.csv
+Nearest,nearest_feasible_user,large,80-D,2,300,5.594502,10,True,1.0,0.013333,0.025,13.821768,1,0.173068,222.726606,distance,30.0,15.0,logs/main/large/nearest_feasible_user/seed_2.csv
+Nearest,nearest_feasible_user,large,80-D,3,300,67.938282,1,True,1.0,0.033333,0.15,74.216942,6,0.274712,227.866015,distance,30.0,15.0,logs/main/large/nearest_feasible_user/seed_3.csv
+Nearest,nearest_feasible_user,large,80-D,4,300,8.284399,217,True,1.0,0.016667,0.025,14.559789,1,0.145311,227.539048,distance,30.0,15.0,logs/main/large/nearest_feasible_user/seed_4.csv
+Nearest,nearest_feasible_user,large,80-D,5,300,73.473091,1,True,1.0,0.073333,0.175,77.199925,7,0.382059,172.683397,distance,30.0,15.0,logs/main/large/nearest_feasible_user/seed_5.csv
+Nearest,nearest_feasible_user,large,80-D,6,300,49.768646,1,True,1.0,0.033333,0.125,57.777929,5,0.217038,200.928328,distance,30.0,15.0,logs/main/large/nearest_feasible_user/seed_6.csv
+Nearest,nearest_feasible_user,large,80-D,7,300,20.800699,1,True,1.0,0.043333,0.075,29.985804,3,0.20722,318.51051,distance,30.0,15.0,logs/main/large/nearest_feasible_user/seed_7.csv
+Nearest,nearest_feasible_user,large,80-D,8,300,37.446696,1,True,1.0,0.04,0.1,41.377127,4,0.236058,193.043143,distance,30.0,15.0,logs/main/large/nearest_feasible_user/seed_8.csv
+Nearest,nearest_feasible_user,large,80-D,9,300,12.773504,3,True,1.0,0.066667,0.075,22.860526,3,0.18895,208.702209,distance,30.0,15.0,logs/main/large/nearest_feasible_user/seed_9.csv
+Nearest,nearest_feasible_user,large,80-D,10,300,22.837869,1,True,1.0,0.01,0.075,29.197909,3,0.299119,236.003984,distance,30.0,15.0,logs/main/large/nearest_feasible_user/seed_10.csv
+Nearest,nearest_feasible_user,large,80-D,11,300,31.34784,1,True,1.0,0.03,0.1,35.221697,4,0.326352,187.385609,distance,30.0,15.0,logs/main/large/nearest_feasible_user/seed_11.csv
+Nearest,nearest_feasible_user,large,80-D,12,300,53.820162,5,True,1.0,0.063333,0.125,61.430465,5,0.248119,161.030374,distance,30.0,15.0,logs/main/large/nearest_feasible_user/seed_12.csv
+Nearest,nearest_feasible_user,large,80-D,13,300,17.260147,1,True,1.0,0.033333,0.075,23.324165,3,0.261705,206.401716,distance,30.0,15.0,logs/main/large/nearest_feasible_user/seed_13.csv
+Nearest,nearest_feasible_user,large,80-D,14,300,7.446793,248,True,13.0,0.013333,0.025,11.855112,1,0.316543,240.831901,distance,30.0,15.0,logs/main/large/nearest_feasible_user/seed_14.csv
+Nearest,nearest_feasible_user,large,80-D,15,300,25.052701,1,True,1.0,0.02,0.075,29.398205,3,0.225535,234.55037,distance,30.0,15.0,logs/main/large/nearest_feasible_user/seed_15.csv
+Nearest,nearest_feasible_user,large,80-D,16,300,16.484264,1,True,1.0,0.01,0.05,21.060604,2,0.215507,257.633995,distance,30.0,15.0,logs/main/large/nearest_feasible_user/seed_16.csv
+Nearest,nearest_feasible_user,large,80-D,17,300,24.204292,1,True,1.0,0.026667,0.075,30.299697,3,0.215958,209.540484,distance,30.0,15.0,logs/main/large/nearest_feasible_user/seed_17.csv
+Nearest,nearest_feasible_user,large,80-D,18,300,25.295719,1,True,1.0,0.016667,0.075,31.237604,3,0.210806,194.188426,distance,30.0,15.0,logs/main/large/nearest_feasible_user/seed_18.csv
+Nearest,nearest_feasible_user,large,80-D,19,300,4.606654,1,True,1.0,0.01,0.025,6.836347,1,0.258604,222.96938,distance,30.0,15.0,logs/main/large/nearest_feasible_user/seed_19.csv
+FT-HSBO,ft_hsbo,medium,40-D,0,300,43.646505,7,True,1.0,0.056667,0.2,44.656021,4,0.324349,100.951575,distance,30.0,15.0,logs/main/medium/ft_hsbo/seed_0.csv
+FT-HSBO,ft_hsbo,medium,40-D,1,300,34.810044,10,True,1.0,0.043333,0.15,38.924523,3,0.207331,211.447869,distance,30.0,15.0,logs/main/medium/ft_hsbo/seed_1.csv
+FT-HSBO,ft_hsbo,medium,40-D,2,300,46.574094,10,True,1.0,0.043333,0.2,47.90654,4,0.154691,133.244539,distance,30.0,15.0,logs/main/medium/ft_hsbo/seed_2.csv
+FT-HSBO,ft_hsbo,medium,40-D,3,300,36.484389,1,True,1.0,0.05,0.15,37.974835,3,0.175268,149.044643,distance,30.0,15.0,logs/main/medium/ft_hsbo/seed_3.csv
+FT-HSBO,ft_hsbo,medium,40-D,4,300,34.925544,10,True,1.0,0.036667,0.15,36.689407,3,0.167433,176.386314,distance,30.0,15.0,logs/main/medium/ft_hsbo/seed_4.csv
+FT-HSBO,ft_hsbo,medium,40-D,5,300,25.550439,1,True,1.0,0.02,0.1,27.143195,2,0.10198,159.275651,distance,30.0,15.0,logs/main/medium/ft_hsbo/seed_5.csv
+FT-HSBO,ft_hsbo,medium,40-D,6,300,37.183987,13,True,1.0,0.033333,0.15,40.542071,3,0.125715,135.808482,distance,30.0,15.0,logs/main/medium/ft_hsbo/seed_6.csv
+FT-HSBO,ft_hsbo,medium,40-D,7,300,22.023234,13,True,1.0,0.033333,0.1,23.599631,2,0.163327,157.639744,distance,30.0,15.0,logs/main/medium/ft_hsbo/seed_7.csv
+FT-HSBO,ft_hsbo,medium,40-D,8,300,67.230964,10,True,1.0,0.07,0.25,68.298306,5,0.368776,106.734267,distance,30.0,15.0,logs/main/medium/ft_hsbo/seed_8.csv
+FT-HSBO,ft_hsbo,medium,40-D,9,300,42.224561,16,True,1.0,0.05,0.2,43.485973,4,0.201971,126.141147,distance,30.0,15.0,logs/main/medium/ft_hsbo/seed_9.csv
+FT-HSBO,ft_hsbo,medium,40-D,10,300,31.758815,7,True,1.0,0.053333,0.15,32.732392,3,0.187632,97.357724,distance,30.0,15.0,logs/main/medium/ft_hsbo/seed_10.csv
+FT-HSBO,ft_hsbo,medium,40-D,11,300,36.580382,10,True,1.0,0.04,0.15,38.202873,3,0.17042,162.249148,distance,30.0,15.0,logs/main/medium/ft_hsbo/seed_11.csv
+FT-HSBO,ft_hsbo,medium,40-D,12,300,36.66573,1,True,1.0,0.043333,0.15,37.911187,3,0.125717,124.545723,distance,30.0,15.0,logs/main/medium/ft_hsbo/seed_12.csv
+FT-HSBO,ft_hsbo,medium,40-D,13,300,42.568908,13,True,1.0,0.033333,0.2,43.871093,4,0.110326,130.218495,distance,30.0,15.0,logs/main/medium/ft_hsbo/seed_13.csv
+FT-HSBO,ft_hsbo,medium,40-D,14,300,47.443278,10,True,1.0,0.04,0.2,53.259853,4,0.25544,181.657539,distance,30.0,15.0,logs/main/medium/ft_hsbo/seed_14.csv
+FT-HSBO,ft_hsbo,medium,40-D,15,300,19.435975,28,True,1.0,0.036667,0.1,21.412117,2,0.095018,197.614256,distance,30.0,15.0,logs/main/medium/ft_hsbo/seed_15.csv
+FT-HSBO,ft_hsbo,medium,40-D,16,300,22.889479,7,True,1.0,0.023333,0.1,24.41542,2,0.125354,152.594088,distance,30.0,15.0,logs/main/medium/ft_hsbo/seed_16.csv
+FT-HSBO,ft_hsbo,medium,40-D,17,300,40.82255,1,True,1.0,0.05,0.2,42.500009,4,0.206997,167.745895,distance,30.0,15.0,logs/main/medium/ft_hsbo/seed_17.csv
+FT-HSBO,ft_hsbo,medium,40-D,18,300,27.522069,1,True,1.0,0.036667,0.15,29.441251,3,0.07006,191.918227,distance,30.0,15.0,logs/main/medium/ft_hsbo/seed_18.csv
+FT-HSBO,ft_hsbo,medium,40-D,19,300,72.399095,1,True,1.0,0.076667,0.35,74.166945,7,0.240912,176.785013,distance,30.0,15.0,logs/main/medium/ft_hsbo/seed_19.csv
+FT-HSBO,ft_hsbo,large,80-D,0,300,46.110009,10,True,1.0,0.033333,0.1,51.223911,4,0.133576,311.390263,distance,30.0,15.0,logs/main/large/ft_hsbo/seed_0.csv
+FT-HSBO,ft_hsbo,large,80-D,1,300,54.977834,7,True,1.0,0.033333,0.15,58.487306,6,0.19557,150.947154,distance,30.0,15.0,logs/main/large/ft_hsbo/seed_1.csv
+FT-HSBO,ft_hsbo,large,80-D,2,300,61.200047,10,True,1.0,0.043333,0.125,67.441452,5,0.188837,224.140479,distance,30.0,15.0,logs/main/large/ft_hsbo/seed_2.csv
+FT-HSBO,ft_hsbo,large,80-D,3,300,67.938282,7,True,1.0,0.026667,0.15,74.216942,6,0.133458,227.866015,distance,30.0,15.0,logs/main/large/ft_hsbo/seed_3.csv
+FT-HSBO,ft_hsbo,large,80-D,4,300,47.638527,16,True,1.0,0.036667,0.1,51.753776,4,0.078517,211.524932,distance,30.0,15.0,logs/main/large/ft_hsbo/seed_4.csv
+FT-HSBO,ft_hsbo,large,80-D,5,300,62.989972,10,True,1.0,0.066667,0.125,69.435113,5,0.193683,244.514013,distance,30.0,15.0,logs/main/large/ft_hsbo/seed_5.csv
+FT-HSBO,ft_hsbo,large,80-D,6,300,65.030412,10,True,1.0,0.036667,0.125,68.775071,5,0.14832,174.465923,distance,30.0,15.0,logs/main/large/ft_hsbo/seed_6.csv
+FT-HSBO,ft_hsbo,large,80-D,7,300,47.540084,1,True,1.0,0.043333,0.1,54.700689,4,0.150068,316.060522,distance,30.0,15.0,logs/main/large/ft_hsbo/seed_7.csv
+FT-HSBO,ft_hsbo,large,80-D,8,300,45.757778,10,True,1.0,0.023333,0.1,50.539463,4,0.150256,278.168534,distance,30.0,15.0,logs/main/large/ft_hsbo/seed_8.csv
+FT-HSBO,ft_hsbo,large,80-D,9,300,43.490408,7,True,1.0,0.016667,0.125,47.49673,5,0.106982,200.632189,distance,30.0,15.0,logs/main/large/ft_hsbo/seed_9.csv
+FT-HSBO,ft_hsbo,large,80-D,10,300,57.568289,1,True,1.0,0.033333,0.15,66.221396,6,0.198569,265.310682,distance,30.0,15.0,logs/main/large/ft_hsbo/seed_10.csv
+FT-HSBO,ft_hsbo,large,80-D,11,300,35.531383,1,True,1.0,0.033333,0.075,39.142869,3,0.204329,361.148601,distance,30.0,15.0,logs/main/large/ft_hsbo/seed_11.csv
+FT-HSBO,ft_hsbo,large,80-D,12,300,64.673459,7,True,1.0,0.04,0.15,70.29551,6,0.193579,162.205079,distance,30.0,15.0,logs/main/large/ft_hsbo/seed_12.csv
+FT-HSBO,ft_hsbo,large,80-D,13,300,50.070612,10,True,1.0,0.043333,0.1,56.402602,4,0.161319,233.198979,distance,30.0,15.0,logs/main/large/ft_hsbo/seed_13.csv
+FT-HSBO,ft_hsbo,large,80-D,14,300,31.655896,1,True,1.0,0.03,0.075,38.850366,3,0.25724,319.447031,distance,30.0,15.0,logs/main/large/ft_hsbo/seed_14.csv
+FT-HSBO,ft_hsbo,large,80-D,15,300,44.677045,10,True,1.0,0.033333,0.1,47.333956,4,0.151248,265.691121,distance,30.0,15.0,logs/main/large/ft_hsbo/seed_15.csv
+FT-HSBO,ft_hsbo,large,80-D,16,300,70.364626,1,True,1.0,0.043333,0.15,75.161866,6,0.192993,279.724056,distance,30.0,15.0,logs/main/large/ft_hsbo/seed_16.csv
+FT-HSBO,ft_hsbo,large,80-D,17,300,44.206936,10,True,1.0,0.043333,0.1,50.542092,4,0.128908,233.51559,distance,30.0,15.0,logs/main/large/ft_hsbo/seed_17.csv
+FT-HSBO,ft_hsbo,large,80-D,18,300,47.22505,10,True,1.0,0.033333,0.1,51.35018,4,0.164963,212.51298,distance,30.0,15.0,logs/main/large/ft_hsbo/seed_18.csv
+FT-HSBO,ft_hsbo,large,80-D,19,300,46.6328,10,True,1.0,0.026667,0.125,50.800752,5,0.239907,216.795247,distance,30.0,15.0,logs/main/large/ft_hsbo/seed_19.csv

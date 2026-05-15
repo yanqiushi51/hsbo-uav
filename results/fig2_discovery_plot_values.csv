@@ -1,0 +1,11 @@
+method,method_id,scale,dimension,num_seeds,discovery_success_rate,conditional_median_first_feasible_index,positive_eval_rate
+FT-HSBO,ft_hsbo,medium,40-D,20,1.0,1.0,0.0435
+FT-HSBO,ft_hsbo,large,80-D,20,1.0,1.0,0.036
+Max-Rate,max_rate_greedy,medium,40-D,20,1.0,1.0,0.029
+Max-Rate,max_rate_greedy,large,80-D,20,1.0,1.0,0.0142
+DE-rp,de_rp,medium,40-D,20,1.0,35.0,0.0293
+DE-rp,de_rp,large,80-D,20,1.0,28.5,0.051
+Repair BO,repair_bo,medium,40-D,20,1.0,38.5,0.1113
+Repair BO,repair_bo,large,80-D,20,1.0,23.5,0.1225
+Full BO,full_space_bo,medium,40-D,20,0.35,151.0,0.0017
+Full BO,full_space_bo,large,80-D,20,0.35,60.0,0.0025

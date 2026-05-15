@@ -1,0 +1,9 @@
+method,40D_mean_first_feasible,40D_median_first_feasible,40D_feasible_eval_rate,80D_mean_first_feasible,80D_median_first_feasible,80D_feasible_eval_rate
+RS,119.4,107.0,0.002333,107.0,107.0,0.003333
+Full BO,119.4,107.0,0.002333,107.0,107.0,0.002
+DE-rp,46.0,32.0,0.033667,49.2,38.0,0.05
+Repair BO,51.9,44.5,0.139,72.6,96.0,0.06
+EDF,1.6,1.0,0.026667,14.8,1.0,0.006
+Max-Rate,1.0,1.0,0.034667,1.0,1.0,0.01
+Nearest,1.0,1.0,0.047667,1.0,1.0,0.024
+FT-HSBO,1.0,1.0,0.043667,1.0,1.0,0.034667
