@@ -2,7 +2,7 @@ from pathlib import Path
 import argparse
 import sys
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from src.problem.wireless_generator import generate_all_wireless
@@ -10,7 +10,7 @@ from src.problem.wireless_generator import generate_all_wireless
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--out", default="datasets_wireless")
+    parser.add_argument("--out", default="archive/data/datasets_wireless")
     parser.add_argument("--seeds", nargs="+", type=int, default=list(range(10)))
     parser.add_argument("--window-width", type=float, default=30.0)
     parser.add_argument("--rate-threshold-mbps", type=float, default=1.0)

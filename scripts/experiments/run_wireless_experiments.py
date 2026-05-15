@@ -5,7 +5,7 @@ import argparse
 import sys
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from src.problem.wireless_generator import (
@@ -228,9 +228,9 @@ def main():
         choices=["pilot", "sparsity", "main", "ablation", "window", "rate", "channel", "budget", "minimal"],
         required=True,
     )
-    parser.add_argument("--data-root", default="datasets_wireless")
-    parser.add_argument("--logs-root", default="logs")
-    parser.add_argument("--results-root", default="results")
+    parser.add_argument("--data-root", default="archive/data/datasets_wireless")
+    parser.add_argument("--logs-root", default="outputs/logs")
+    parser.add_argument("--results-root", default="outputs/results")
     parser.add_argument("--scales", "--scale", nargs="+", choices=["small", "medium", "large"], dest="scales")
     parser.add_argument("--methods", nargs="+")
     parser.add_argument("--seeds", nargs="+", type=int)

@@ -1,13 +1,13 @@
 from pathlib import Path
 import sys
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from src.problem.benchmark_generator import generate_all
 
 
 if __name__ == "__main__":
-    out = ROOT / "datasets"
+    out = ROOT / "archive" / "data" / "datasets"
     generate_all(out, seeds=range(10))
     print(f"Generated benchmark instances under {out}")

@@ -5,10 +5,9 @@ Summarize enhanced baseline results alongside existing methods.
 Produces a comparison CSV and a bar chart.
 
 Usage:
-  python scripts/plot_enhanced_results.py \
-    --result-dirs results/enhanced_small results/enhanced_medium results/enhanced_large \
-    --baseline-dirs results/v2_small_10seeds results/v2_medium_b300 results/v2_large_b300 \
-    --out-prefix results/enhanced_summary
+  python scripts/figures/plot_enhanced_results.py \
+    --scale-dirs 18-D=outputs/enhanced_small 40-D=outputs/enhanced_medium 80-D=outputs/enhanced_large \
+    --out-prefix outputs/enhanced_summary
 """
 
 from __future__ import annotations
@@ -23,11 +22,11 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 # Re-use the common figure utilities.
-FIG_COMMON = ROOT / "hsbo_paper_figure_scripts" / "hsbo_figure_scripts"
+FIG_COMMON = ROOT / "paper" / "figure_scripts" / "hsbo_paper_figure_scripts" / "hsbo_figure_scripts"
 if str(FIG_COMMON) not in sys.path:
     sys.path.insert(0, str(FIG_COMMON))
 
@@ -160,7 +159,7 @@ def plot(summary: pd.DataFrame, out_prefix: str):
 
 
 def _parse_scale_dir(items):
-    """Parse SCALE=DIR pairs like '18-D=results/enhanced_small'."""
+    """Parse SCALE=DIR pairs like '18-D=outputs/enhanced_small'."""
     result = []
     for item in items:
         if "=" not in item:
@@ -173,8 +172,8 @@ def _parse_scale_dir(items):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--scale-dirs", nargs="+", required=True,
-                        help="SCALE=DIR pairs, e.g. '18-D=results/enhanced_small'")
-    parser.add_argument("--out-prefix", default="results/enhanced_summary")
+                        help="SCALE=DIR pairs, e.g. '18-D=outputs/enhanced_small'")
+    parser.add_argument("--out-prefix", default="outputs/enhanced_summary")
     parser.add_argument("--budget", type=int, default=None)
     args = parser.parse_args()
 

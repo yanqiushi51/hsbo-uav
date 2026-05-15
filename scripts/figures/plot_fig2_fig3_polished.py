@@ -10,10 +10,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 
-ROOT = Path(__file__).resolve().parents[1]
-RESULTS = ROOT / "results"
-FIGURES = ROOT / "figures"
-PAPER_FIGURES = Path(r"C:\Users\35256\Desktop\FT-HSBO\wcl_color_unified_deliverable\figures")
+ROOT = Path(__file__).resolve().parents[2]
+RESULTS = ROOT / "archive" / "experiments" / "results"
+FIGURES = ROOT / "paper" / "figures"
 
 
 METHOD_LABELS = {
@@ -99,10 +98,6 @@ def save_all(fig: plt.Figure, stem: str) -> None:
             kwargs["dpi"] = 420
         fig.savefig(out, **kwargs)
         print(f"Wrote {out}")
-        if PAPER_FIGURES.exists():
-            paper_out = PAPER_FIGURES / out.name
-            fig.savefig(paper_out, **kwargs)
-            print(f"Wrote {paper_out}")
 
 
 def method_name(method_id: str) -> str:

@@ -4,10 +4,10 @@
 Figure 2: multiscale final-best reward distribution (JSEE-ready).
 
 python plot_multiscale_reward_distribution.py \
-  --small-dir results/v2_small_10seeds \
-  --medium-dir results/v2_medium_b300 \
-  --large-dir results/v2_large_b300 \
-  --out figures/fig2_reward_distribution.png
+  --small-dir archive/experiments/results/v2_small_10seeds \
+  --medium-dir archive/experiments/results/v2_medium_b300 \
+  --large-dir archive/experiments/results/v2_large_b300 \
+  --out paper/figures/fig2_reward_distribution.png
 """
 
 from __future__ import annotations

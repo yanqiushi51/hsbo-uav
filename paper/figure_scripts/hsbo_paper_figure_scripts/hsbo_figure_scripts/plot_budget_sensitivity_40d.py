@@ -7,17 +7,17 @@ Uses trajectory-truncation from a single b=800 run, so the best-so-far
 curve is monotone non-decreasing — the correct anytime behaviour.
 
 Prerequisite:
-  python scripts/run_experiment.py \
+  python scripts/experiments/run_experiment.py \
     --scale medium \
     --methods random greedy_distance greedy_reward_density ga pso bo hsbo \
     --budget 800 --seeds 0 1 2 3 4 \
-    --out results/budget_medium_b800
+    --out outputs/budget_medium_b800
 
 Usage:
   python plot_budget_sensitivity_40d.py \
-    --data-dir results/budget_medium_b800 \
+    --data-dir archive/experiments/results/budget_medium_b800 \
     --budgets 100 200 300 500 800 \
-    --out figures/fig4_budget_sensitivity_40d.png
+    --out paper/figures/fig4_budget_sensitivity_40d.png
 """
 
 from __future__ import annotations
@@ -150,7 +150,7 @@ def main():
                         help="Directory with b=800 per-seed CSV files.")
     parser.add_argument("--budgets", nargs="+", type=int,
                         default=[100, 200, 300, 500, 800])
-    parser.add_argument("--out", default="figures/fig4_budget_sensitivity_40d.png")
+    parser.add_argument("--out", default="paper/figures/fig4_budget_sensitivity_40d.png")
     args = parser.parse_args()
 
     table = build_table(Path(args.data_dir), args.budgets)

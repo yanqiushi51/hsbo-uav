@@ -3,9 +3,9 @@
 Run enhanced baselines (CMA-ES, DE, and their repaired variants).
 
 Usage:
-  python scripts/run_enhanced_baselines.py \
+  python scripts/experiments/run_enhanced_baselines.py \
     --scale medium --methods cmaes cmaes_repair de de_repair \
-    --budget 300 --seeds 0 1 2 3 4 --out results/enhanced_medium
+    --budget 300 --seeds 0 1 2 3 4 --out outputs/enhanced_medium
 """
 
 from __future__ import annotations
@@ -14,7 +14,7 @@ import argparse
 from pathlib import Path
 import sys
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 import pandas as pd
@@ -40,7 +40,7 @@ ENHANCED_METHODS = {
 
 
 def get_instance(scale: str, seed: int):
-    path = ROOT / "datasets" / scale / f"instance_seed{seed}.json"
+    path = ROOT / "archive" / "data" / "datasets" / scale / f"instance_seed{seed}.json"
     if path.exists():
         return load_instance(path)
     return generate_instance(scale, seed)
@@ -53,7 +53,7 @@ def main():
                         default=["cmaes", "cmaes_repair", "de", "de_repair"])
     parser.add_argument("--budget", type=int, default=300)
     parser.add_argument("--seeds", nargs="+", type=int, default=[0, 1, 2, 3, 4])
-    parser.add_argument("--out", type=str, default="results/enhanced")
+    parser.add_argument("--out", type=str, default="outputs/enhanced")
     args = parser.parse_args()
 
     out = Path(args.out)

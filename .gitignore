@@ -47,9 +47,29 @@ main.pdf
 # Temp directories
 .tmp_pdf_review/
 .tmp_pdf_review2/
+_local/
 
 # Logs
 logs/
+
+# Local scratch outputs. Keep curated paper/result snapshots explicit.
+outputs/
+runs/
+scratch/
+local_results/
+local_logs/
+
+# Paper build outputs
+paper/*.aux
+paper/*.log
+paper/*.synctex*
+paper/*.out
+paper/*.toc
+paper/*.bbl
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/main.pdf
 
 # Results (large CSV files — enable if you want to exclude)
 # results/

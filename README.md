@@ -43,34 +43,80 @@ pip install -r requirements.txt
 
 `scikit-optimize` is optional but recommended. If unavailable, `bo` falls back to random search and prints a warning.
 
-## Quick start
+## Writing-stage repository layout
+
+- `paper/`: manuscript, paper figures, figure data exports, paper packages, and visual QA snapshots.
+- `archive/data/`: committed dataset snapshots from the finished experiments.
+- `archive/experiments/`: committed result tables, archived logs, smoke runs, calibration outputs, and diagnostic figures.
+- `src/`: HSBO implementation, environments, baselines, and evaluation utilities.
+- `scripts/`: grouped entry points for data generation, optional experiments,
+  summaries, figures, and maintenance.
+- `docs/`: structure and reproducibility notes.
+- `_local/`: ignored local generated files moved out of the repository root.
+- `outputs/` and `runs/`: ignored locations for any future exploratory reruns.
+
+The repository is now organized for paper writing first. The completed
+experiment artifacts are preserved under `archive/` instead of being spread
+across the top level.
+
+## Paper workflow
+
+The active manuscript is:
+
+```bash
+paper/main.tex
+```
+
+It references figures under `paper/figures/`, so compile from the `paper/`
+directory:
+
+```bash
+cd paper
+latexmk -pdf main.tex
+```
+
+Selected polished WCL figures can be regenerated from archived summaries with:
+
+```bash
+python scripts/figures/plot_fig2_fig3_polished.py
+python scripts/figures/plot_wireless_figures.py \
+  --logs-root archive/experiments/logs \
+  --results-root archive/experiments/results \
+  --figures-root paper/figures
+```
+
+See `docs/PROJECT_STRUCTURE.md` for the full inventory and
+`docs/REPRODUCIBILITY.md` for archived experiment commands. See
+`scripts/README.md` and `src/README.md` for the code entry-point map.
+
+## Optional reruns
 
 Generate datasets:
 
 ```bash
-python scripts/generate_datasets.py
+python scripts/data/generate_datasets.py
 ```
 
 Run a smoke test:
 
 ```bash
-python scripts/run_experiment.py --scale small --methods random greedy_distance greedy_reward_density ga pso bo hsbo --budget 80 --seeds 0 1 --out results/v2_smoke
-python scripts/summarize_results.py --results results/v2_smoke --out results/v2_smoke_summary.csv
-python scripts/plot_convergence.py --results results/v2_smoke --out results/v2_smoke_convergence.png
+python scripts/experiments/run_experiment.py --scale small --methods random greedy_distance greedy_reward_density ga pso bo hsbo --budget 80 --seeds 0 1 --out outputs/v2_smoke
+python scripts/summaries/summarize_results.py --results outputs/v2_smoke --out outputs/v2_smoke_summary.csv
+python scripts/figures/plot_convergence.py --results outputs/v2_smoke --out outputs/v2_smoke_convergence.png
 ```
 
 Run the 40-dimensional medium setting:
 
 ```bash
-python scripts/run_experiment.py --scale medium --methods random greedy_distance greedy_reward_density ga pso bo hsbo --budget 150 --seeds 0 1 2 3 4 --out results/medium_main
-python scripts/summarize_results.py --results results/medium_main --out results/medium_summary.csv
+python scripts/experiments/run_experiment.py --scale medium --methods random greedy_distance greedy_reward_density ga pso bo hsbo --budget 150 --seeds 0 1 2 3 4 --out outputs/medium_main
+python scripts/summaries/summarize_results.py --results outputs/medium_main --out outputs/medium_summary.csv
 ```
 
 Run ablations:
 
 ```bash
-python scripts/run_ablation.py --scale medium --budget 150 --seeds 0 1 2 3 4 --out results/medium_ablation
-python scripts/summarize_results.py --results results/medium_ablation --out results/medium_ablation_summary.csv
+python scripts/experiments/run_ablation.py --scale medium --budget 150 --seeds 0 1 2 3 4 --out outputs/medium_ablation
+python scripts/summaries/summarize_results.py --results outputs/medium_ablation --out outputs/medium_ablation_summary.csv
 ```
 
 ## Wireless WCL experiment pipeline
@@ -82,13 +128,13 @@ collection with hard validity windows and wireless rate/upload feasibility.
 Generate wireless instances:
 
 ```bash
-python scripts/generate_wireless_datasets.py --seeds 0 1 2 3 4 5 6 7 8 9
+python scripts/data/generate_wireless_datasets.py --seeds 0 1 2 3 4 5 6 7 8 9
 ```
 
 Run the 40-D calibration pilot:
 
 ```bash
-python scripts/run_wireless_experiments.py --experiment pilot --samples 2000 --window-width 30 --rate-threshold-mbps 1
+python scripts/experiments/run_wireless_experiments.py --experiment pilot --samples 2000 --window-width 30 --rate-threshold-mbps 1
 ```
 
 In the current evaluator, `W=30s, Rmin=1Mbps` is too easy for the 40-D random
@@ -97,18 +143,17 @@ target 0%--1% band. Use the calibrated threshold for the main run unless the
 wireless parameters are changed:
 
 ```bash
-python scripts/run_wireless_experiments.py --experiment sparsity --samples 2000 --rate-threshold-mbps 15
-python scripts/run_wireless_experiments.py --experiment main --rate-threshold-mbps 15
-python scripts/run_wireless_experiments.py --experiment ablation --rate-threshold-mbps 15
-python scripts/run_wireless_experiments.py --experiment window --rate-threshold-mbps 15
-python scripts/run_wireless_experiments.py --experiment rate --rate-values 10 15 20
-python scripts/summarize_wireless_results.py --which all
-python scripts/plot_wireless_figures.py
+python scripts/experiments/run_wireless_experiments.py --experiment sparsity --samples 2000 --rate-threshold-mbps 15
+python scripts/experiments/run_wireless_experiments.py --experiment main --rate-threshold-mbps 15
+python scripts/experiments/run_wireless_experiments.py --experiment ablation --rate-threshold-mbps 15
+python scripts/experiments/run_wireless_experiments.py --experiment window --rate-threshold-mbps 15
+python scripts/experiments/run_wireless_experiments.py --experiment rate --rate-values 10 15 20
+python scripts/summaries/summarize_wireless_results.py --which all
+python scripts/figures/plot_wireless_figures.py
 ```
 
-Wireless logs are saved under `logs/{experiment}/{scale}/{method}/seed_{seed}.csv`.
-Summary tables are written to `results/summary_*.csv`, and figures are written
-to `figures/`.
+By default, new wireless reruns write logs and summaries under `outputs/`.
+Archived paper results are under `archive/experiments/`.
 
 ## Decision vector
 

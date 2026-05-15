@@ -12,7 +12,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 
 METHOD_LABELS = {
     "ft_hsbo": "FT-HSBO",
@@ -253,9 +253,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description="Export evaluation-wise best-so-far sequences and draw Fig. 2."
     )
-    parser.add_argument("--logs-root", type=Path, default=ROOT / "logs")
-    parser.add_argument("--results-root", type=Path, default=ROOT / "results")
-    parser.add_argument("--figures-root", type=Path, default=ROOT / "figures")
+    parser.add_argument("--logs-root", type=Path, default=ROOT / "archive" / "experiments" / "logs")
+    parser.add_argument("--results-root", type=Path, default=ROOT / "archive" / "experiments" / "results")
+    parser.add_argument("--figures-root", type=Path, default=ROOT / "paper" / "figures")
     parser.add_argument("--scale", default="medium", choices=["medium", "large"])
     parser.add_argument("--budget", type=int, default=300)
     parser.add_argument("--methods", nargs="*", default=METHOD_ORDER)

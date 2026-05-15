@@ -6,7 +6,7 @@ import sys
 import pandas as pd
 from tqdm import tqdm
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from src.problem.benchmark_generator import generate_instance, load_instance
@@ -25,7 +25,7 @@ ABLATIONS = {
 
 
 def get_instance(scale: str, seed: int):
-    path = ROOT / "datasets" / scale / f"instance_seed{seed}.json"
+    path = ROOT / "archive" / "data" / "datasets" / scale / f"instance_seed{seed}.json"
     if path.exists():
         return load_instance(path)
     return generate_instance(scale, seed)
@@ -36,7 +36,7 @@ def main():
     parser.add_argument("--scale", choices=["small", "medium", "large"], default="medium")
     parser.add_argument("--budget", type=int, default=150)
     parser.add_argument("--seeds", nargs="+", type=int, default=[0, 1, 2])
-    parser.add_argument("--out", type=str, default="results/ablation")
+    parser.add_argument("--out", type=str, default="outputs/ablation")
     args = parser.parse_args()
 
     out = Path(args.out)

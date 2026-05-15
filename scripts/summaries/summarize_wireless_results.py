@@ -6,7 +6,7 @@ import sys
 import numpy as np
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 
@@ -150,8 +150,8 @@ def summarize(df: pd.DataFrame) -> pd.DataFrame:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--logs-root", default="logs")
-    parser.add_argument("--results-root", default="results")
+    parser.add_argument("--logs-root", default="outputs/logs")
+    parser.add_argument("--results-root", default="outputs/results")
     parser.add_argument("--which", choices=["all", *SUMMARY_TARGETS.keys()], default="all")
     args = parser.parse_args()
 

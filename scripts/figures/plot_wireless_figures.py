@@ -10,7 +10,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 
@@ -121,9 +121,9 @@ def plot_channel(summary: pd.DataFrame, filename: Path):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--logs-root", default="logs")
-    parser.add_argument("--results-root", default="results")
-    parser.add_argument("--figures-root", default="figures")
+    parser.add_argument("--logs-root", default="outputs/logs")
+    parser.add_argument("--results-root", default="outputs/results")
+    parser.add_argument("--figures-root", default="paper/figures")
     args = parser.parse_args()
 
     logs_root = ROOT / args.logs_root

@@ -4,10 +4,10 @@
 Figure 3: feasible discovery analysis (JSEE-ready).
 
 python plot_success_first_feasible.py \
-  --small-dir results/v2_small_10seeds \
-  --medium-dir results/v2_medium_b300 \
-  --large-dir results/v2_large_b300 \
-  --out figures/fig3_success_first_feasible.png
+  --small-dir archive/experiments/results/v2_small_10seeds \
+  --medium-dir archive/experiments/results/v2_medium_b300 \
+  --large-dir archive/experiments/results/v2_large_b300 \
+  --out paper/figures/fig3_success_first_feasible.png
 """
 
 from __future__ import annotations
